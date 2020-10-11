@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package AdminGui;
+package Controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,18 +21,20 @@ import javafx.stage.Stage;
  *
  * @author Haider
  */
-public class FXMLAdminGuiController implements Initializable {
+public class RegistrationSystemController implements Initializable {
 
-    
-    
-    
-    
-    
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+    }    
     
     public void ButtonGoToLogin(ActionEvent event) throws IOException{
         
         System.out.println("Hello world");
-        Parent parentScene = FXMLLoader.load(getClass().getResource("/loginModule/FXMLLoginSystem.fxml"));
+        Parent parentScene = FXMLLoader.load(getClass().getResource("/Usergui/FXMLLoginSystem.fxml"));
         
         Scene NextScene = new Scene(parentScene);
         
@@ -40,15 +42,6 @@ public class FXMLAdminGuiController implements Initializable {
         
         window.setScene(NextScene);
         window.show();
-    }    
-    
-    
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package medicalGui;
+package Controllers;
 
 import java.io.IOException;
 import java.net.URL;
@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  *
  * @author Haider
  */
-public class FXMLMedicalGuiController implements Initializable {
+public class MedicalController implements Initializable {
 
     
     
@@ -29,7 +29,7 @@ public class FXMLMedicalGuiController implements Initializable {
       public void ButtonGoToLogin(ActionEvent event) throws IOException{
         
         System.out.println("Hello world");
-        Parent parentScene = FXMLLoader.load(getClass().getResource("/loginModule/FXMLLoginSystem.fxml"));
+        Parent parentScene = FXMLLoader.load(getClass().getResource("/Usergui/FXMLLoginSystem.fxml"));
         
         Scene NextScene = new Scene(parentScene);
         

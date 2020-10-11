@@ -4,18 +4,16 @@
  * and open the template in the editor.
 //dsdsd 
  */
-package loginModule;
+package Controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import static java.time.Clock.system;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -29,7 +27,7 @@ import javafx.stage.Stage;
  *
  * @author Haider
  */
-public class FXMLLoginSystemController implements Initializable {
+public class LoginSystemController implements Initializable {
     
     @FXML
     private Label label;
@@ -40,7 +38,7 @@ public class FXMLLoginSystemController implements Initializable {
     @FXML
     private PasswordField passwordField;
     @FXML
-    private FXMLLoginSystemController controllerClass;
+    private LoginSystemController controllerClass;
     FXMLLoader fxmlLoader;
     
     private final String staffUsername = "medical";
@@ -59,7 +57,7 @@ public class FXMLLoginSystemController implements Initializable {
         System.out.println("Hello world");
          fxmlLoader = new FXMLLoader();
      
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/RegistrationModule/FXMLRegistrationSystem.fxml"));
+        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLRegistrationSystem.fxml"));
         Scene NextScene = new Scene(parentScene);
         
        
@@ -87,7 +85,7 @@ public class FXMLLoginSystemController implements Initializable {
             
             
        // FXMLLoader fxmlLoader = new FXMLLoader();
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/AdminGui/FXMLAdminGui.fxml"));
+        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLAdmin.fxml"));
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
@@ -96,7 +94,16 @@ public class FXMLLoginSystemController implements Initializable {
  
        }else if(staffUsername.equals(username)){
            
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/medicalGui/FXMLMedicalGui.fxml"));
+        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLMedical.fxml"));
+        Scene NextScene = new Scene(parentScene);
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(NextScene);
+        window.show();
+           
+       } else if(patientUsername.equals(username)){
+           
+        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLPatient.fxml"));
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
@@ -104,6 +111,10 @@ public class FXMLLoginSystemController implements Initializable {
         window.show();
            
        }
+        
+        
+        
+        
     }
     
     
