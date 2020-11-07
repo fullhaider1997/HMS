@@ -18,8 +18,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
@@ -85,7 +87,7 @@ public class LoginSystemController implements Initializable {
             
             
        // FXMLLoader fxmlLoader = new FXMLLoader();
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLAdmin.fxml"));
+        StackPane parentScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/Admin/FXMLAdmin.fxml"));
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
@@ -101,25 +103,13 @@ public class LoginSystemController implements Initializable {
         window.setScene(NextScene);
         window.show();
            
-       } else if(patientUsername.equals(username)){
-           
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLPatient.fxml"));
-        Scene NextScene = new Scene(parentScene);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+       } 
         
-        window.setScene(NextScene);
-        window.show();
-           
-       }
-        
-        
-        
+       
         
     }
     
-    
-    
-    
+   
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
