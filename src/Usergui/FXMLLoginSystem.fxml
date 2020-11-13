@@ -20,7 +20,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="129.0" prefWidth="630.0" style="-fx-background-color: #add8e6;">
                <children>
-                  <Text fill="#1e1e1e" strokeType="OUTSIDE" strokeWidth="0.0" text=" Hosptial Managment" textAlignment="RIGHT">
+                  <Text fill="#1e1e1e" strokeType="OUTSIDE" strokeWidth="0.0" text="Hospital Management" textAlignment="RIGHT">
                      <font>
                         <Font size="35.0" />
                      </font>
@@ -41,7 +41,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="userNameField" prefHeight="39.0" prefWidth="200.0" promptText="Username"  GridPane.columnSpan="2" GridPane.rowSpan="2" />
+                        <TextField fx:id="userNameField" prefHeight="39.0" prefWidth="200.0" promptText="Username" GridPane.columnSpan="2" GridPane.rowSpan="2" />
                         <PasswordField fx:id="passwordField" prefHeight="41.0" prefWidth="200.0" promptText="Pasword" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2" />
                         <Button mnemonicParsing="false" onAction="#Login" prefHeight="32.0" prefWidth="98.0" style="-fx-background-color: #add8e6;" text="Login" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <Button mnemonicParsing="false" onAction="#ButtonGoToRegistration" prefHeight="31.0" prefWidth="96.0" style="-fx-background-color: #000000;" text="Register" textFill="WHITE" GridPane.columnSpan="2" GridPane.rowIndex="3" />
