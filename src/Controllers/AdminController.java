@@ -59,32 +59,15 @@ public class AdminController implements Initializable {
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         window.setScene(NextScene);
         window.show();
+        
     }    
     public void EmployeeTab(ActionEvent event) throws IOException{
         
-        System.out.println("Employee tab");
-        FXMLLoader fxmlLoader = new FXMLLoader();
         
-        AnchorPane EmployeesScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/Admin/FXMLHosptialEmployees.fxml"));
+        Utilities utility = new Utilities();
         
-        StackPane AdminScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/Admin/FXMLAdmin.fxml"));
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
         
-        BorderPane borderpane =(BorderPane) AdminScene.lookup("#BorderPane");
-        
-         if(borderpane!=null){
-             System.out.println("border pane exist");
-         }else{
-             System.out.println("border doesn't exist");
-         }
-         
-         borderpane.setCenter(EmployeesScene);
-         Scene NextScene = new Scene(AdminScene);
-         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-         window.setScene(NextScene);
-         window.show();
-        
-        
-         
         
     }
     
