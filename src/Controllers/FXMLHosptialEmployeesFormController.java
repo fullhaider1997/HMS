@@ -32,7 +32,7 @@ public class FXMLHosptialEmployeesFormController implements Initializable {
         
         Utilities utility = new Utilities();
         
-          utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
         
     }
     

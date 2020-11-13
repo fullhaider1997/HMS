@@ -30,6 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import utilities.Utilities;
 
 /**
  * FXML Controller class
@@ -43,30 +44,11 @@ public class AdminController implements Initializable {
       
     public void PatientTab(ActionEvent event) throws IOException{
       
-        System.out.println("Employee tab");
-        FXMLLoader fxmlLoader = new FXMLLoader();
+        Utilities utility = new Utilities();
         
-        AnchorPane PatientScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/Admin/FXMLPatient.fxml"));
-        
-        StackPane AdminScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/Admin/FXMLAdmin.fxml"));
-        
-        BorderPane borderpane =(BorderPane) AdminScene.lookup("#BorderPane");
-        
-         if(borderpane!=null){
-             System.out.println("border pane exist");
-         }else{
-             System.out.println("border doesn't exist");
-         }
-         
-         borderpane.setCenter(PatientScene);
-         Scene NextScene = new Scene(AdminScene);
-         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-         window.setScene(NextScene);
-         window.show();
-        
-        
-        
-        
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLPatient.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+       
+  
     }  
       
       

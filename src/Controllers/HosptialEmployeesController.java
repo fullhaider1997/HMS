@@ -27,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import utilities.Utilities;
 
 public class HosptialEmployeesController implements Initializable {
     
@@ -44,31 +45,11 @@ public class HosptialEmployeesController implements Initializable {
     
     public void EmployeeTab(ActionEvent event) throws IOException{
         
-        System.out.println("Employee tab");
-        FXMLLoader fxmlLoader = new FXMLLoader();
         
+        Utilities utility = new Utilities();
+        
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployeesForm.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
        
-        
-      
-        AnchorPane HosptialEmployeeForm = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/Admin/FXMLHosptialEmployeesForm.fxml"));
-       
-        StackPane AdminScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/Admin/FXMLAdmin.fxml"));
-        
-        BorderPane borderpane =(BorderPane)  AdminScene.lookup("#BorderPane");
-        
-         if(borderpane!=null){
-             System.out.println("border pane exist");
-         }else{
-             System.out.println("border doesn't exist");
-         }
-         
-         borderpane.setCenter(HosptialEmployeeForm );
-         Scene NextScene = new Scene(AdminScene);
-         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-         window.setScene(NextScene);
-         window.show();
-        
-
         
     }
     

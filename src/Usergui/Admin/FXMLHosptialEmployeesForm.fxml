@@ -8,23 +8,24 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controllers.FXMLHosptialEmployeesFormController">
+<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.FXMLHosptialEmployeesFormController">
     <stylesheets>
         <URL value="@fxmlhosptialemployeesform.css" />
     </stylesheets>
     
     <children>
-      <BorderPane layoutX="3.0" layoutY="1.0" prefHeight="515.0" prefWidth="629.0">
+      <BorderPane layoutX="3.0" layoutY="1.0" prefHeight="556.0" prefWidth="629.0">
          <left>
-            <Pane prefHeight="400.0" prefWidth="91.0" style="-fx-background-color: #87CEFA;" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="548.0" prefWidth="91.0" style="-fx-background-color: #87CEFA;" BorderPane.alignment="CENTER" />
          </left>
          <center>
-            <AnchorPane prefHeight="501.0" prefWidth="549.0" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="556.0" prefWidth="549.0" BorderPane.alignment="CENTER">
                <children>
                   <Button layoutX="49.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" text="Confirm" />
                   <Button layoutX="310.0" layoutY="396.0" mnemonicParsing="false" onAction="#ExitButton" prefHeight="38.0" prefWidth="90.0" text="Exist" />
-                  <VBox layoutX="251.0" layoutY="127.0" prefHeight="220.0" prefWidth="265.0" spacing="15.0">
+                  <VBox layoutX="251.0" layoutY="127.0" prefHeight="220.0" prefWidth="265.0" spacing="20.0">
                      <children>
                         <Label text="Job Title" />
                         <TextField />
@@ -34,7 +35,7 @@
                         <TextField />
                      </children>
                   </VBox>
-                  <VBox layoutX="23.0" layoutY="127.0" prefHeight="200.0" prefWidth="209.0" spacing="15.0">
+                  <VBox layoutX="23.0" layoutY="127.0" prefHeight="200.0" prefWidth="209.0" spacing="20.0">
                      <children>
                         <Label text="First Name" />
                         <TextField />
@@ -44,6 +45,11 @@
                         <TextField />
                      </children>
                   </VBox>
+                  <Label layoutX="133.0" layoutY="36.0" prefHeight="73.0" prefWidth="238.0" text="Employment Form" textFill="#71dbeb">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </center>
