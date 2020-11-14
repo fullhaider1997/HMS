@@ -39,14 +39,13 @@ import utilities.Utilities;
  */
 public class AdminController implements Initializable {
 
-      private static final String SERVER_IP = "127.0.0.1";
-      private static final int SERVER_PORT = 9090;
+     
       
     public void PatientTab(ActionEvent event) throws IOException{
       
         Utilities utility = new Utilities();
         
-        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLPatient.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLPatientView.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
       
     }  
       
@@ -68,7 +67,7 @@ public class AdminController implements Initializable {
         
     }
     
-    public void HosptialArragment(ActionEvent event) throws IOException{
+    public void HosptialArragmentTab(ActionEvent event) throws IOException {
         
         Utilities utility = new Utilities();
         
@@ -77,7 +76,31 @@ public class AdminController implements Initializable {
         
     }
     
+    public void AdminGuideTab(ActionEvent event) throws IOException {
+        
+        Utilities utility = new Utilities();
+        
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLAdminGuide.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+        
+    }
+    
+   public void ManageAppointmentsTab(ActionEvent event) throws IOException{
+       
+        Utilities utility = new Utilities();
+        
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLManagingAppointments.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+       
+       
+   }
    
+   public void ExportDataTab(ActionEvent event) throws IOException {
+       
+       Utilities utility = new Utilities();
+        
+       utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLExportData.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+       
+       
+   }
     
     
    
