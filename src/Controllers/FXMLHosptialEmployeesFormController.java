@@ -36,4 +36,12 @@ public class FXMLHosptialEmployeesFormController implements Initializable {
         
     }
     
+    public void confirmButton(ActionEvent event) throws IOException{
+        
+        
+        Utilities utility = new Utilities();
+        
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+    }
+    
 }

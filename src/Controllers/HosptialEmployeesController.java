@@ -64,7 +64,6 @@ public class HosptialEmployeesController implements Initializable {
         department.setCellValueFactory(new PropertyValueFactory<>("department"));
         jobTitle.setCellValueFactory(new PropertyValueFactory<>("JobTitle"));
         
-        
         Employee emp1 = new Employee("Haider","Neurology","Surgeon");
         Employee emp2 = new Employee("Joe","Internal surgery","Surgeon assistant");
         Employee emp3 = new Employee("Alaa","radiology","Surgeon");

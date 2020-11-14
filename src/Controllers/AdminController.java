@@ -47,8 +47,7 @@ public class AdminController implements Initializable {
         Utilities utility = new Utilities();
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLPatient.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
-       
-  
+      
     }  
       
       
@@ -63,10 +62,17 @@ public class AdminController implements Initializable {
     }    
     public void EmployeeTab(ActionEvent event) throws IOException{
         
-        
         Utilities utility = new Utilities();
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+        
+    }
+    
+    public void HosptialArragment(ActionEvent event) throws IOException{
+        
+        Utilities utility = new Utilities();
+        
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialArrangment.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
         
         
     }

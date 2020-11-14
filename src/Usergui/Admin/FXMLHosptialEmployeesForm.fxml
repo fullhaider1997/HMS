@@ -23,8 +23,8 @@
          <center>
             <AnchorPane prefHeight="556.0" prefWidth="549.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="49.0" layoutY="390.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="95.0" text="Confirm" />
-                  <Button layoutX="310.0" layoutY="396.0" mnemonicParsing="false" onAction="#ExitButton" prefHeight="38.0" prefWidth="90.0" text="Exist" />
+                  <Button layoutX="38.0" layoutY="470.0" mnemonicParsing="false" onAction="#confirmButton" prefHeight="38.0" prefWidth="95.0" text="Confirm" />
+                  <Button layoutX="326.0" layoutY="470.0" mnemonicParsing="false" onAction="#ExitButton" prefHeight="38.0" prefWidth="90.0" text="Exist" />
                   <VBox layoutX="251.0" layoutY="127.0" prefHeight="220.0" prefWidth="265.0" spacing="20.0">
                      <children>
                         <Label text="Job Title" />
@@ -32,6 +32,8 @@
                         <Label text="Age" />
                         <TextField />
                         <Label text="Address" />
+                        <TextField />
+                        <Label text="Job title" />
                         <TextField />
                      </children>
                   </VBox>
@@ -42,6 +44,8 @@
                         <Label text="Last Name" />
                         <TextField />
                         <Label text="Phone Numer" />
+                        <TextField />
+                        <Label prefHeight="17.0" prefWidth="82.0" text="Department" />
                         <TextField />
                      </children>
                   </VBox>
