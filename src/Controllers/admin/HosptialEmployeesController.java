@@ -1,5 +1,5 @@
 
-package Controllers;
+package Controllers.admin;
 
 import java.net.URL;
 import java.util.ResourceBundle;

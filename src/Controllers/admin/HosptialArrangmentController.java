@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package Controllers.admin;
 
 import DataModelLayer.Employee;
 import DataModelLayer.Room;
@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
-public class FXMLHosptialArrangmentController implements Initializable {
+public class HosptialArrangmentController implements Initializable {
 
      @FXML
     private Label label;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controllers;
+package Controllers.admin;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +16,7 @@ import utilities.Utilities;
  *
  * @author Haider
  */
-public class FXMLHosptialEmployeesFormController implements Initializable {
+public class HosptialEmployeesFormController implements Initializable {
 
     /**
      * Initializes the controller class.
