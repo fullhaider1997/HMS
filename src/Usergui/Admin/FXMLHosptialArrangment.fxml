@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.FXMLHosptialArrangmentController">
+<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.HosptialArrangmentController">
     <stylesheets>
         <URL value="@fxmlhosptialarrangment.css" />
     </stylesheets>
