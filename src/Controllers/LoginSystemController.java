@@ -30,8 +30,10 @@ import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.net.URL;
+import java.util.HashMap;
 import javafx.scene.Parent;
 
+import utilities.Fpacket;
 
 /**
  *
@@ -55,14 +57,15 @@ public class LoginSystemController implements Initializable,ChatIF {
     private final String patientUsername = "patient";
     private final String adminUsername = "admin";
     private final String password = "123";
-    
-    
-     Client client = null;
     final public static int DEFAULT_PORT = 5555;
+    Fpacket fpacket;
+    
+    
+    Client client = null;
+    
     String host = "";
     
-    
-     AdminController admincontroller;
+    AdminController admincontroller;
     
     
     
@@ -123,7 +126,14 @@ public class LoginSystemController implements Initializable,ChatIF {
            if(client.isConnected()== true){
                
                System.out.println("Client is connected");
-               client.sendToServer("Logger");
+               
+               fpacket = new Fpacket("authentication",username,password);
+             
+               //client.sendToServer(fpacket);
+               
+               
+               
+               
                
                
            }else{
@@ -150,7 +160,7 @@ public class LoginSystemController implements Initializable,ChatIF {
          }else{
              System.out.println("Admin controller is not null !");
          }
-          admincontroller.setClient(client);
+         admincontroller.setClient(client);
          
         //StackPane parentScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/Admin/FXMLAdmin.fxml"));
    
@@ -160,7 +170,7 @@ public class LoginSystemController implements Initializable,ChatIF {
         
         window.setScene(NextScene);
         window.show();
-        
+         
        
  
        }else if(staffUsername.equals(username)){
