@@ -7,6 +7,7 @@ package Controllers.admin;
 
 import DataModelLayer.Patient;
 import DataModelLayer.Room;
+import client.Client;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
@@ -57,8 +58,21 @@ public class PatientViewController implements Initializable{
     @FXML private TableColumn <Patient, String> typeOfPatient;
  
      private final ObservableList<Patient> patientDataList = FXCollections.observableArrayList();
+    private Client adminClient;
     
-    
+    public void setClient(Client client) throws IOException {
+          
+          this.adminClient = client; 
+         
+          adminClient.sendToServer("We are still connected");
+          
+      }
+     
+     
+     
+     
+     
+     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
        

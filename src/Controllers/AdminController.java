@@ -6,6 +6,9 @@
  */
 package Controllers;
 
+import static Controllers.LoginSystemController.DEFAULT_PORT;
+import client.Client;
+import common.ChatIF;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
@@ -37,18 +40,26 @@ import utilities.Utilities;
  *
  * @author Haider
  */
-public class AdminController implements Initializable {
+public class AdminController implements Initializable,ChatIF {
 
+    static Client adminClient;
+    // String name;
+    final public static int DEFAULT_PORT = 5555;
+    String host = "";
+    
+     
+    
+    
+    
+      public void setClient(Client client) throws IOException {
+          
+          this.adminClient = client; 
+        //  this.name = "haider";
+      }
+      
      
       
-    public void PatientTab(ActionEvent event) throws IOException{
-      
-        Utilities utility = new Utilities();
-        
-        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLPatientView.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
-      
-    }  
-      
+   
       
     public void ButtonGoToLogin(ActionEvent event) throws IOException{
         
@@ -59,25 +70,63 @@ public class AdminController implements Initializable {
         window.show();
         
     }    
+    
+     public void PatientTab(ActionEvent event) throws IOException{
+      
+        Utilities utility = new Utilities();
+       
+       // if(name != null){
+        //    System.out.println("name is not null");
+       // }else{
+      //      System.out.println("name is null !");
+       // }
+         if(adminClient == null){
+            System.out.println("adminClient is null 1");
+        }else{
+            System.out.println("adminClient is not null 1 ! ");
+        }
+        adminClient.sendToServer("patient tab hello ");
+       
+        
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLPatientView.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+        
+   
+      
+    }  
     public void EmployeeTab(ActionEvent event) throws IOException{
         
-        Utilities utility = new Utilities();
+        if(adminClient == null){
+            System.out.println("adminClient is null 2");
+        }else{
+            System.out.println("adminClient is not null 2 ! ");
+        }
         
-        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+        
+            adminClient.sendToServer("employee tab hello 2");
+     
+        Utilities utility = new Utilities();
+     
+            utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+     
+        
+        
+       
         
     }
     
     public void HosptialArragmentTab(ActionEvent event) throws IOException {
         
+      
+    
         Utilities utility = new Utilities();
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialArrangment.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
         
-        
+       
     }
     
     public void AdminGuideTab(ActionEvent event) throws IOException {
-        
+       
         Utilities utility = new Utilities();
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLAdminGuide.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
@@ -89,7 +138,7 @@ public class AdminController implements Initializable {
         Utilities utility = new Utilities();
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLManagingAppointments.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
-       
+      
        
    }
    
@@ -106,17 +155,27 @@ public class AdminController implements Initializable {
    
     
     public static void Main(String[] args) throws IOException {
-         System.out.println("Admin controller");
+         System.out.println("Admin controller 1");
                 
          
    
     }
+    
+ 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         {
-        }
+         
+            
+            System.out.println("initalize admin controller");
         }
 
-    
-}
+   
+      }
+
+    @Override
+    public void display(String message) {
+        System.out.println(message);
+    }
+    }
