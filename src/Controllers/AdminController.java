@@ -42,19 +42,19 @@ import utilities.Utilities;
  */
 public class AdminController implements Initializable,ChatIF {
 
-    static Client adminClient;
-    // String name;
+    Client adminClient;
+    String name;
     final public static int DEFAULT_PORT = 5555;
     String host = "";
     
      
-    
-    
+   
     
       public void setClient(Client client) throws IOException {
           
-          this.adminClient = client; 
-        //  this.name = "haider";
+          
+          this.name = "haider";
+           this.adminClient = client;
       }
       
      
@@ -75,11 +75,11 @@ public class AdminController implements Initializable,ChatIF {
       
         Utilities utility = new Utilities();
        
-       // if(name != null){
-        //    System.out.println("name is not null");
-       // }else{
-      //      System.out.println("name is null !");
-       // }
+        if(name != null){
+            System.out.println("name is not null");
+        }else{
+           System.out.println("name is null !");
+        }
          if(adminClient == null){
             System.out.println("adminClient is null 1");
         }else{

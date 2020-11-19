@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
-
+import utilities.Fpacket;
 /**
  *
  * @author Haider
@@ -50,59 +50,14 @@ public class Server extends AbstractServer{
    */
   public void handleMessageFromClient (Object msg, ConnectionToClient client)
       {
-       System.out.println("Message received: " + msg + " from " + client);
-       
-       //If the client is an admin
-       if("admin".equals(msg.toString())){
+         System.out.println("Message received: " + msg + " from " + client);
+       // Fpacket Fmsg = (Fpacket)msg;
+                
+         //System.out.println(Fmsg.getTpeOfRequest());
+               
+               
           
          
-               //Here add code to query username and see if it exist in the database
-               // If username doesn't exist or username is wrong then
-               // send back a message to login
-               // If username does and password is correct
-               // send a back message "success"
-               
-               
-               
-               //Save the type of user as admin
-               client.setInfo("Type", "admin");
-               client.setName(msg.toString());
-              
-               
-               //Send a message back to client that
-               
-               System.out.println("User logged in" + msg.toString());
-        
-
-           
-               
-          
-       }
-        if("patient".equals(msg.toString())){
-          
-               client.setInfo("Type", "patient");
-               
-              
-               
-               System.out.println("User logged in" + msg.toString());
-         
-       }
-         if("doctor".equals(msg.toString())){
-           client.setInfo("Type", "doctor");
-           
-           
-               System.out.println("User logged in" + msg.toString());
-          
-       }
-         if("info".equals(msg.toString())){
-         
-                 System.out.println("User logged in" + msg.toString());
-               
-               
-               
-               
-          
-         }
           
        
        //this.sendToAllClients(msg);

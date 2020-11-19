@@ -131,17 +131,18 @@ public abstract class AbstractClient implements Runnable{
    */
   public void sendToServer(Object msg) throws IOException
   {
-    if (clientSocket == null || output == null) {
+    if (clientSocket == null) {
       throw new SocketException("socket does not exist");
     }
 
-    output.writeObject(msg);
-    
-    if(output == null){
+     if(output == null){
         System.out.println("OutputStream is null  3!");
     }else{
         System.out.println("Output stream is not null 3 !");
     }
+    output.writeObject(msg);
+    
+   
     
     
   }
