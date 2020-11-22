@@ -6,6 +6,7 @@
 package server;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ import utilities.Fpacket;
 public class Server extends AbstractServer{
       
   
-     final String url = "jdbc:mysql://maikenserver.database.windows.net:1433;database=hmsdatabase";
+     final String url = "jdbc:sqlserver://maikenserver.database.windows.net:1433;DatabaseName=hmsdatabase";
      final String user = "HMSAdmin";
      final String password = "NinjaWay123";
     
@@ -87,11 +88,12 @@ public class Server extends AbstractServer{
       
   }
   
-  protected void ConnectToDatabase() throws ClassNotFoundException{
+  protected void ConnectToDatabase() throws ClassNotFoundException {
       
-
+       
        try {
-             
+              Class.forName("com.mysql.jdbc.Driver");
+          
              Connection connection = DriverManager.getConnection(url, user, password);
              System.out.println("Connected");
              
@@ -112,9 +114,14 @@ public class Server extends AbstractServer{
   protected void serverStarted() {
       
         
-             System.out.println("Server listening for connections on port " + getPort());
-       
-         
+      System.out.println("Server listening for connections on port " + getPort());
+        
+      
+         try {
+             ConnectToDatabase();
+         } catch (ClassNotFoundException ex) {
+             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+         }
      
   }
   
@@ -155,8 +162,10 @@ public class Server extends AbstractServer{
     
     try 
     {
+       
+      //sv.ConnectToDatabase();
       sv.listen(); //Start listening for connections
-      
+        
       
     } 
     catch (Exception ex) 
