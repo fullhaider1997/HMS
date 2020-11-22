@@ -6,6 +6,9 @@
 package server;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ocsf.server.AbstractServer;
@@ -17,9 +20,13 @@ import utilities.Fpacket;
  */
 public class Server extends AbstractServer{
       
-  /**
-   * The default port to listen on.
-   */
+  
+     final String url = "jdbc:mysql://maikenserver.database.windows.net:1433;database=hmsdatabase";
+     final String user = "HMSAdmin";
+     final String password = "NinjaWay123";
+    
+    
+    
   final public static int DEFAULT_PORT = 5555;
   
   //Constructors ****************************************************
@@ -50,10 +57,14 @@ public class Server extends AbstractServer{
    */
   public void handleMessageFromClient (Object msg, ConnectionToClient client)
       {
+          
+          
          System.out.println("Message received: " + msg + " from " + client);
-       // Fpacket Fmsg = (Fpacket)msg;
-                
-         //System.out.println(Fmsg.getTpeOfRequest());
+         Fpacket Fmsg = (Fpacket)msg;
+         String MessageType = Fmsg.getTpeOfRequest();
+         if(MessageType.equals("authentication")){
+              HandleAuthneticationRequests(Fmsg);
+         }
                
                
           
@@ -63,14 +74,48 @@ public class Server extends AbstractServer{
        //this.sendToAllClients(msg);
      }
     
+  public void HandleAuthneticationRequests(Fpacket msg){
+      
+      
+              System.out.println("Handle Authnetication");
+              System.out.println(msg.getTpeOfRequest());
+              System.out.println(msg.getArg1());
+              System.out.println(msg.getArg2());
+              
+        
+        
+      
+  }
+  
+  protected void ConnectToDatabase() throws ClassNotFoundException{
+      
+
+       try {
+             
+             Connection connection = DriverManager.getConnection(url, user, password);
+             System.out.println("Connected");
+             
+         } catch (SQLException ex) {
+             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+             System.out.print("Error creating connection: "+ex);
+         }
+  }
+  
+  
+  
+  
+  
   /**
    * This method overrides the one in the superclass.  Called
    * when the server starts listening for connections.
    */
-  protected void serverStarted()
-  {
-    System.out.println
-      ("Server listening for connections on port " + getPort());
+  protected void serverStarted() {
+      
+        
+             System.out.println("Server listening for connections on port " + getPort());
+       
+         
+     
   }
   
   /**
@@ -104,47 +149,15 @@ public class Server extends AbstractServer{
     {
       port = DEFAULT_PORT; //Set port to 5555
     }
-	
-    String url = "jdbc:sqlserver://DESKTOP-OG5SA85;databaseName=HMSdatabase";
-    String user= "hmsadmin";
-    String password= "hmsadmin";
-    
-    /*
-     try {
-        
-            Connection connection = DriverManager.getConnection(url,user,password);
-            System.out.println("Connected to Microsft SQL SERVER");
-            
-            String sql= "Select * FROM Admins";
-            
-            Statement statement= connection.createStatement();
-            
-            ResultSet result = statement.executeQuery(sql);
-            
-            while(result.next()){
-                int idnum = result.getInt("adminID");
-                String fname =result.getString("firstname");
-                String lname= result.getString("lastname");
-                String dob= result.getString("dob");
-                String addr= result.getString("addr");
-                String phonenum= result.getString("phonenumber");
-                
-                System.out.printf("Admin ID: %d, Firstname: %s, LastName: %s, DOB: %s, Address: %s, Ph.Num: %s \n", idnum,
-                        fname, lname, dob,addr,phonenum);
-            }
-            
-            connection.close();
-        } catch (SQLException ex) {
-            System.out.println("There is an error");
-            ex.printStackTrace();
-        }
-          */
+
     
     Server sv = new Server(port);
     
     try 
     {
       sv.listen(); //Start listening for connections
+      
+      
     } 
     catch (Exception ex) 
     {

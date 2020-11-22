@@ -28,7 +28,7 @@ public class Fpacket implements Serializable{
         
         this.typeOfRequest = typeOfRequest;
         this.arg1 = arg1;
-        this.arg2 = arg1;
+        this.arg2 = arg2;
     }
    public String getTpeOfRequest(){
        return typeOfRequest;
