@@ -5,6 +5,8 @@
  */
 package server;
 
+import utilities.*;
+import java.sql.*;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
@@ -15,6 +17,7 @@ import java.util.logging.Logger;
 import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 import utilities.Fpacket;
+import DataModelLayer.*;
 /**
  *
  * @author Haider
@@ -57,6 +60,57 @@ public class Server extends AbstractServer{
    * @param client The connection from which the message originated.
    */
   public void handleMessageFromClient (Object msg, ConnectionToClient client)
+
+  {
+        System.out.println("Message received: "  + " from " + client);
+        Fpacket Fmsg = (Fpacket)msg;
+        if(Fmsg.getTpeOfRequest().equals("register"))
+        {
+            UserModule um= (UserModule)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.VerifyLogin(um));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(Fmsg.getTpeOfRequest().equals("login"))
+        {
+            UserModule um= (UserModule)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.RegisterUser(um));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(Fmsg.getTpeOfRequest().equals("addpatient")){
+            Patient p =(Patient)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.AddPatient(p));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(Fmsg.getTpeOfRequest().equals("modifypatient")){
+            Patient p =(Patient)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.ModifyPatient(p));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        if(Fmsg.getTpeOfRequest().equals("modifyemployee")){
+            Employee e =(Employee)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.ModifyEmployee(e));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
+         //System.out.println(Fmsg.getTpeOfRequest());
+
       {
           
           
@@ -66,6 +120,7 @@ public class Server extends AbstractServer{
          if(MessageType.equals("authentication")){
               HandleAuthneticationRequests(Fmsg);
          }
+
                
                
           
@@ -73,7 +128,7 @@ public class Server extends AbstractServer{
           
        
        //this.sendToAllClients(msg);
-     }
+  }
     
   public void HandleAuthneticationRequests(Fpacket msg){
       

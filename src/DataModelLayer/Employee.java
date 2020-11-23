@@ -5,47 +5,98 @@
  */
 package DataModelLayer;
 
-import javafx.beans.property.SimpleStringProperty;
-
 /**
  *
- * @author Haider
+ * @author maiken
  */
-public class Employee {
+import java.time.*;
+import javafx.beans.property.SimpleStringProperty;
+import java.io.Serializable;
+
+
+public class Employee implements Serializable{
     
-    private final SimpleStringProperty firstName;
-    private final SimpleStringProperty department;
-    private final SimpleStringProperty jobTitle;
+    private int ID;
+    private String firstName;
+    private String lastName;
+    private LocalDate dob;
+    private String address;
+    private String phoneNumber;
+    private String jobtitle;
+    private String specialty;
     
     
-    public Employee(String name, String department,String jobTitle){
-       
-        this.firstName = new SimpleStringProperty(name);
-        this.department = new SimpleStringProperty(department);
-        this.jobTitle = new SimpleStringProperty(jobTitle);
+    public Employee(int ID, String firstName, String lastName , LocalDate dob, String address, String phoneNumber, String jobtitle, String specialty){
         
+        this.ID = ID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.address = address;
+        this.phoneNumber =phoneNumber;
+        this.jobtitle = jobtitle;
+        this.specialty = specialty;
     }
     
-    public void setfirstName(String firstName){
-        this.firstName.set(firstName);
-    }
-    public void setDepartment(String department){
-        this.department.set(department);
-    }
-    public void setjobTitle(String jobTitle){
-        this.jobTitle.set(jobTitle);
+    public Employee(String firstName, String lastName , LocalDate dob, String address, String phoneNumber, String jobtitle, String specialty){
+        
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.address =address;
+        this.phoneNumber = phoneNumber;
+        this.jobtitle = jobtitle;
+        this.specialty = specialty;
     }
     
+    
+    public void setFirstName(String firstName){
+        this.firstName=firstName;
+    }
+    public void setLastName(String lastname){
+        this.lastName= lastname;
+    }
+    public void setDOB(LocalDate dob){
+        this.dob = dob;
+    }
+    public void setAddress(String address){
+        this.address=address;   
+    }
+     public void setPhoneNumber(String phoneNumber){
+        this.phoneNumber = phoneNumber;   
+    }
+    public void setJobTitle(String title){
+        this.jobtitle = title;   
+    }
+    public void setSpecialty(String specialty){
+        this.specialty = specialty;   
+    }
+    
+    
+    public int getID(){
+        return ID;
+    }
     public String getFirstName(){
-        return firstName.get();
+        return firstName;
     }
-    public String getDepartment(){
-        return department.get();
+    public String getLastName(){
+        return lastName;
     }
+    public String getAddress(){
+        return address;
+    }
+    public String getDOB(){
+        return dob.toString();
+    }
+    public String getPhoneNumber(){
+        return phoneNumber;
+    } 
     public String getJobTitle(){
-        return jobTitle.get();
+        return jobtitle;
     }
-    
-    
+    public String getSpecialty(){
+        return specialty;
+    }
     
 }
+

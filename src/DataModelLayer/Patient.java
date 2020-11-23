@@ -1,61 +1,80 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package DataModelLayer;
 
-
+/**
+ *
+ * @author maiken
+ */
+import java.time.*;
 import javafx.beans.property.SimpleStringProperty;
+import java.io.Serializable;
 
-public class Patient {
- 
-    private final SimpleStringProperty firstName;
-    private final SimpleStringProperty lastName;
-    private final SimpleStringProperty patientType;
-    private final SimpleStringProperty address;
-    private final SimpleStringProperty phoneNumber;
+public class Patient implements Serializable{
+    
+    private int ID;
+    private String firstName;
+    private String lastName;
+    private LocalDate dob;
+    private String address;
+    private String phoneNumber;
     
     
-     public Patient(String firstName, String lastName, String patientType, String address, String phoneNumber){
+    public Patient(int ID,String firstName, String lastName , LocalDate dob, String address, String phoneNumber)
+    {
+        this.ID = ID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.address = address;
+        this.phoneNumber =phoneNumber;
+    }
+    public Patient(String firstName, String lastName , LocalDate dob, String address, String phoneNumber){
         
-         this.firstName = new SimpleStringProperty(firstName);
-         this.lastName = new SimpleStringProperty(lastName);
-         this.patientType = new SimpleStringProperty(patientType);
-         this.address = new SimpleStringProperty(address);
-         this.phoneNumber = new SimpleStringProperty(phoneNumber);
-        
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.address = address;
+        this.phoneNumber =phoneNumber;
     }
-     public void setFirstName(String firstName){
-        this.firstName.set(firstName);
+    
+    
+    public void setFirstName(String firstName){
+        this.firstName= firstName;
     }
-    public void setLastName(String department){
-        this.lastName.set(department);
+    public void setLastName(String lastname){
+        this.lastName =lastname;
     }
-    public void setPatientType(String jobTitle){
-        this.patientType.set(jobTitle);
+    public void setDOB(LocalDate dob){
+        this.dob = dob;
     }
     public void setAddress(String address){
-        this.address.set(address);   
+        this.address = address;   
     }
-     public void setPhoneNumber(String phoneNumber){
-        this.phoneNumber.set(phoneNumber);   
+    public void setPhoneNumber(String phoneNumber){
+        this.phoneNumber= phoneNumber;   
     }
     
     
-    
+    public int getID(){
+        return ID;
+    }
     public String getFirstName(){
-        return firstName.get();
+        return firstName;
     }
     public String getLastName(){
-        return lastName.get();
+        return lastName;
     }
     public String getAddress(){
-        return address.get();
+        return address;
     }
-    public String getPatientType(){
-        return patientType.get();
+    public String getDOB(){
+        return dob.toString();
     }
     public String getPhoneNumber(){
-        return phoneNumber.get();
+        return phoneNumber;
     }
-    
-    
-    
 }
