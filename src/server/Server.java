@@ -151,7 +151,7 @@ public class Server extends AbstractServer{
     {
       port = DEFAULT_PORT; //Set port to 5555
     }
-	
+
     String url = "jdbc:sqlserver://DESKTOP-OG5SA85;databaseName=HMSdatabase";
     String user= "hmsadmin";
     String password= "hmsadmin";
