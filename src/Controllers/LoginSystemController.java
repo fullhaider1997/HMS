@@ -66,6 +66,7 @@ public class LoginSystemController implements Initializable,ChatIF {
     String host = "";
     
     AdminController admincontroller;
+ 
     
     
     
@@ -129,7 +130,7 @@ public class LoginSystemController implements Initializable,ChatIF {
                
                fpacket = new Fpacket("authentication",username,password);
              
-               //client.sendToServer(fpacket);
+               client.sendToServer(fpacket);
                
                
                
@@ -154,16 +155,15 @@ public class LoginSystemController implements Initializable,ChatIF {
          fxmlLoader.setLocation(LoginSystemController.class.getResource("/Usergui/Admin/FXMLAdmin.fxml"));
          
          StackPane parentScene = fxmlLoader.load();
+         
          AdminController admincontroller = fxmlLoader.getController();
+  
          if(admincontroller == null){
              System.out.println("Admin controller is null !");
          }else{
              System.out.println("Admin controller is not null !");
          }
-         admincontroller.setClient(client);
-         
-        //StackPane parentScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/Admin/FXMLAdmin.fxml"));
-   
+     
         
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();

@@ -42,25 +42,22 @@ import utilities.Utilities;
  */
 public class AdminController implements Initializable,ChatIF {
 
-    Client adminClient;
-    String name;
+     static Client adminClient;
+     static String name;
     final public static int DEFAULT_PORT = 5555;
     String host = "";
     
-     
-   
     
       public void setClient(Client client) throws IOException {
           
           
           this.name = "haider";
-           this.adminClient = client;
+          this.adminClient = client;
+           
+        
       }
       
-     
-      
-   
-      
+    
     public void ButtonGoToLogin(ActionEvent event) throws IOException{
         
         Parent parentScene = FXMLLoader.load(getClass().getResource("/Usergui/FXMLLoginSystem.fxml"));
@@ -74,7 +71,8 @@ public class AdminController implements Initializable,ChatIF {
      public void PatientTab(ActionEvent event) throws IOException{
       
         Utilities utility = new Utilities();
-       
+     
+        
         if(name != null){
             System.out.println("name is not null");
         }else{
@@ -85,7 +83,8 @@ public class AdminController implements Initializable,ChatIF {
         }else{
             System.out.println("adminClient is not null 1 ! ");
         }
-        adminClient.sendToServer("patient tab hello ");
+         
+         adminClient.sendToServer("Hello from patient tab");
        
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLPatientView.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
@@ -102,11 +101,11 @@ public class AdminController implements Initializable,ChatIF {
         }
         
         
-            adminClient.sendToServer("employee tab hello 2");
+         
      
         Utilities utility = new Utilities();
      
-            utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
+        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
      
         
         
@@ -116,8 +115,6 @@ public class AdminController implements Initializable,ChatIF {
     
     public void HosptialArragmentTab(ActionEvent event) throws IOException {
         
-      
-    
         Utilities utility = new Utilities();
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialArrangment.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
@@ -167,8 +164,15 @@ public class AdminController implements Initializable,ChatIF {
     public void initialize(URL location, ResourceBundle resources) {
         {
          
-            
             System.out.println("initalize admin controller");
+            
+            try {
+                adminClient = new Client(host, DEFAULT_PORT, this);
+          
+                adminClient.openConnection();
+            } catch (IOException ex) {
+                Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
    
