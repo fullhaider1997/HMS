@@ -15,8 +15,7 @@ import java.util.HashMap;
 public class Fpacket implements Serializable{
     
     String typeOfRequest;
-    String arg1;
-    String arg2;
+    Object arg1;
     
    public Fpacket(String typeOfRequest, String arg1){
         
@@ -28,17 +27,14 @@ public class Fpacket implements Serializable{
         
         this.typeOfRequest = typeOfRequest;
         this.arg1 = arg1;
-        this.arg2 = arg1;
     }
    public String getTpeOfRequest(){
        return typeOfRequest;
    }
-   public String getArg1(){
+   public Object getArg1(){
        return arg1;
    }
-   public String getArg2(){
-       return arg2;
-   }
+ 
     
     
     
