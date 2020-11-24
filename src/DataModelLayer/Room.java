@@ -5,7 +5,6 @@
  */
 package DataModelLayer;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,48 +15,48 @@ import javafx.collections.ObservableList;
  *
  * @author Haider
  */
-public class Room implements Serializable{
-    private String roomID;
-    private String type;
-    private String StatusAvailability;
-    private int numberOfBeds;
+public class Room {
+    private final SimpleStringProperty roomID;
+    private final SimpleStringProperty typeOfBed;
+    private final SimpleStringProperty StatusAvailability;
+    private final SimpleStringProperty numberOfBeds;
     
     
     
-    public Room(String roomID, String type, int numberOfBeds,String StatusAvailability){
+    public Room(String roomID, String typeOfBed, String numberOfBeds,String StatusAvailability){
        
-        this.roomID = roomID;
-        this.type = type;
-        this.numberOfBeds = numberOfBeds;
-        this.StatusAvailability = StatusAvailability;
+        this.roomID = new SimpleStringProperty(roomID);
+        this.typeOfBed= new SimpleStringProperty(typeOfBed);
+        this.numberOfBeds = new SimpleStringProperty(numberOfBeds);
+        this.StatusAvailability = new SimpleStringProperty(StatusAvailability);
         
     }
     
     public void setRoomID(String roomID){
-        this.roomID = roomID;
+        this. roomID.set(roomID);
     }
-    public void setType(String type){
-        this.type= type;
+    public void setTypeOfBed(String typeOfBed){
+        this.typeOfBed.set(typeOfBed);
     }
     public void setStatusAvailability(String StatusAvailability){
-        this.StatusAvailability = StatusAvailability;
+        this.StatusAvailability.set(StatusAvailability);
     }
-    public void setNumberOfBeds(int numOfBeds){
-        this.numberOfBeds = numOfBeds;
+    public void setNumberOfBeds(String numOfBeds){
+        this.numberOfBeds.set(numOfBeds);
     }
     
     
     
     public String getRoomID(){
-        return roomID;
+        return roomID.get();
     }
-    public String getType(){
-        return type;
+    public String getTypeOfBed(){
+        return typeOfBed.get();
     }
     public String getStatusAvailability(){
-        return StatusAvailability;
+        return StatusAvailability.get();
     }
-    public int getNumOfBeds(){
-        return numberOfBeds;
+    public String getNumOfBeds(){
+        return numberOfBeds.get();
     }
 }

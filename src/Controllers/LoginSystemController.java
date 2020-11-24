@@ -70,6 +70,7 @@ public class LoginSystemController implements Initializable,ChatIF {
     
     
     
+   
     @Override
     public void display(String message) 
      {
