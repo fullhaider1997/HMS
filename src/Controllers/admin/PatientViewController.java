@@ -11,6 +11,7 @@ import client.Client;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Observable;
@@ -80,9 +81,9 @@ public class PatientViewController implements Initializable{
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         typeOfPatient.setCellValueFactory(new PropertyValueFactory<>("typeOfPatient"));
-        
-        Patient patient1 = new Patient("Haider","Ibrahim", "Inpatient"," 65 falconer drive","414-414-414");
-        Patient patient2 = new Patient("Alex","John", "Outpatient"," 25 morning drive","414-414-414");
+        LocalDate dob = null;
+        Patient patient1 = new Patient("Haider","Ibrahim", dob.now(), "Inpatient"," 65 falconer drive","414-414-414");
+        Patient patient2 = new Patient("Alex","John", dob.now(), "Outpatient"," 25 morning drive","414-414-414");
       
          patientDataList.addAll(patient1,patient2);
         
@@ -107,7 +108,7 @@ public class PatientViewController implements Initializable{
                  {
                      return true;
                  }
-                 else if(Patient.getPatientType().toLowerCase().contains(lowerCaseFilter)){
+                 else if(Patient.getAddress().toLowerCase().contains(lowerCaseFilter)){
                      ;
                      return true;
                  }

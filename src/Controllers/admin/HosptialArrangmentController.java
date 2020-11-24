@@ -45,10 +45,10 @@ public class HosptialArrangmentController implements Initializable {
         StatusAvailability.setCellValueFactory(new PropertyValueFactory<>("StatusAvailability"));
         numberOfBeds.setCellValueFactory(new PropertyValueFactory<>("numberOfBeds"));
         
-        Room room1 = new Room("101","Shared","3","0/3");
-        Room room2 = new Room("102","Shared","2","2/3");
-        Room room3 = new Room("103","Private","1","1/1");
-        Room room4 = new Room("104","Private","1", "0/1");
+        Room room1 = new Room("101","Shared",3,"0/3");
+        Room room2 = new Room("102","Shared",2,"2/3");
+        Room room3 = new Room("103","Private",1,"1/1");
+        Room room4 = new Room("104","Private",1, "0/1");
        
         
         roomDataList.addAll(room1,room2,room3,room4);
@@ -66,18 +66,19 @@ public class HosptialArrangmentController implements Initializable {
                  }
                 
                  String lowerCaseFilter = newValue.toLowerCase();
+                 int bednum = Integer.valueOf(lowerCaseFilter);
                  
                  if(Room.getRoomID().contains(lowerCaseFilter) ){
                      return true;
                  }
-                 else if (Room.getTypeOfBed().contains(lowerCaseFilter))
+                 else if (Room.getStatusAvailability().contains(lowerCaseFilter))
                  {
                      return true;
                  }
                  else if(Room.getStatusAvailability().toLowerCase().contains(lowerCaseFilter)){
                      return true;
                  }
-                 else if (Room.getNumOfBeds().toLowerCase().contains(lowerCaseFilter)){
+                 else if (Room.getNumOfBeds()==bednum){
                      return true;
                  }
                  

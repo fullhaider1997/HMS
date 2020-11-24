@@ -24,16 +24,18 @@ public class Room implements Serializable{
     
     
     
-    public Room(String roomID, String type, int numberOfBeds,String StatusAvailability){
+    public Room(String roomID, String type, int string,String StatusAvailability){
        
         this.roomID = roomID;
         this.type = type;
-        this.numberOfBeds = numberOfBeds;
+        this.numberOfBeds = string;
         this.StatusAvailability = StatusAvailability;
         
     }
     
-    public void setRoomID(String roomID){
+   
+
+	public void setRoomID(String roomID){
         this.roomID = roomID;
     }
     public void setType(String type){

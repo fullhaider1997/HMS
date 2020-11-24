@@ -127,7 +127,7 @@ public class LoginSystemController implements Initializable,ChatIF {
                
                System.out.println("Client is connected");
                
-               fpacket = new Fpacket("authentication",username,password);
+               fpacket = new Fpacket("authentication",username);
              
                client.sendToServer(fpacket);
                
