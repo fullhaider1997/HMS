@@ -8,6 +8,10 @@ package server;
 import utilities.*;
 import java.sql.*;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ocsf.server.AbstractServer;
@@ -20,9 +24,13 @@ import DataModelLayer.*;
  */
 public class Server extends AbstractServer{
       
-  /**
-   * The default port to listen on.
-   */
+  
+     final String url = "jdbc:sqlserver://maikenserver.database.windows.net:1433;DatabaseName=hmsdatabase";
+     final String user = "HMSAdmin";
+     final String password = "NinjaWay123";
+    
+    
+    
   final public static int DEFAULT_PORT = 5555;
   
   //Constructors ****************************************************
@@ -52,19 +60,11 @@ public class Server extends AbstractServer{
    * @param client The connection from which the message originated.
    */
   public void handleMessageFromClient (Object msg, ConnectionToClient client)
+
   {
         System.out.println("Message received: "  + " from " + client);
         Fpacket Fmsg = (Fpacket)msg;
         if(Fmsg.getTpeOfRequest().equals("register"))
-        {
-            UserModule um= (UserModule)Fmsg.getArg1();
-            try {
-                client.sendToClient(QueryRequest.VerifyLogin(um));
-            } catch (IOException ex) {
-                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if(Fmsg.getTpeOfRequest().equals("login"))
         {
             UserModule um= (UserModule)Fmsg.getArg1();
             try {
@@ -73,7 +73,16 @@ public class Server extends AbstractServer{
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if(Fmsg.getTpeOfRequest().equals("addpatient")){
+        else if(Fmsg.getTpeOfRequest().equals("login"))
+        {
+            UserModule um= (UserModule)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.VerifyLogin(um));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("addpatient")){
             Patient p =(Patient)Fmsg.getArg1();
             try {
                 client.sendToClient(QueryRequest.AddPatient(p));
@@ -81,7 +90,7 @@ public class Server extends AbstractServer{
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if(Fmsg.getTpeOfRequest().equals("modifypatient")){
+        else if(Fmsg.getTpeOfRequest().equals("modifypatient")){
             Patient p =(Patient)Fmsg.getArg1();
             try {
                 client.sendToClient(QueryRequest.ModifyPatient(p));
@@ -90,7 +99,16 @@ public class Server extends AbstractServer{
             }
         }
         
-        if(Fmsg.getTpeOfRequest().equals("modifyemployee")){
+        else if(Fmsg.getTpeOfRequest().equals("addemployee")){
+            Patient p =(Patient)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.AddPatient(p));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        else if(Fmsg.getTpeOfRequest().equals("modifyemployee")){
             Employee e =(Employee)Fmsg.getArg1();
             try {
                 client.sendToClient(QueryRequest.ModifyEmployee(e));
@@ -98,26 +116,98 @@ public class Server extends AbstractServer{
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        else if(Fmsg.getTpeOfRequest().equals("addroom")){
+            Room r= (Room)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.AddRoom(r));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("modifyroom")){
+            Room r= (Room)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.ModifyRoom(r));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("addbed")){
+            Bed b= (Bed)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.AddBed(b));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("modifybed")){
+            Bed b= (Bed)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.ModifyBed(b));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("allpatients")){
+            try {
+                client.sendToClient(QueryRequest.GetAllPatients());
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("alldoctors")){
+            try {
+                client.sendToClient(QueryRequest.GetAllDoctors());
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("allnurses")){
+            try {
+                client.sendToClient(QueryRequest.GetAllNurses());
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("alladmin")){
+            try {
+                client.sendToClient(QueryRequest.GetAllAdmin());
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("alladmin")){
+            try {
+                client.sendToClient(QueryRequest.GetAllAdmin());
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
-        
-         //System.out.println(Fmsg.getTpeOfRequest());
-               
-               
-          
-         
-          
-       
-       //this.sendToAllClients(msg);
+        else if(Fmsg.getTpeOfRequest().equals("requestappointment"))
+        {
+            Appointment a= (Appointment)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.RequestAppointment(a));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
   }
-    
+
+  
+  
+  
+  
   /**
    * This method overrides the one in the superclass.  Called
    * when the server starts listening for connections.
    */
-  protected void serverStarted()
-  {
-    System.out.println
-      ("Server listening for connections on port " + getPort());
+  protected void serverStarted() {
+      
+        
+      System.out.println("Server listening for connections on port " + getPort());
+        
   }
   
   /**
@@ -152,46 +242,17 @@ public class Server extends AbstractServer{
       port = DEFAULT_PORT; //Set port to 5555
     }
 
-    String url = "jdbc:sqlserver://DESKTOP-OG5SA85;databaseName=HMSdatabase";
-    String user= "hmsadmin";
-    String password= "hmsadmin";
-    
-    /*
-     try {
-        
-            Connection connection = DriverManager.getConnection(url,user,password);
-            System.out.println("Connected to Microsft SQL SERVER");
-            
-            String sql= "Select * FROM Admins";
-            
-            Statement statement= connection.createStatement();
-            
-            ResultSet result = statement.executeQuery(sql);
-            
-            while(result.next()){
-                int idnum = result.getInt("adminID");
-                String fname =result.getString("firstname");
-                String lname= result.getString("lastname");
-                String dob= result.getString("dob");
-                String addr= result.getString("addr");
-                String phonenum= result.getString("phonenumber");
-                
-                System.out.printf("Admin ID: %d, Firstname: %s, LastName: %s, DOB: %s, Address: %s, Ph.Num: %s \n", idnum,
-                        fname, lname, dob,addr,phonenum);
-            }
-            
-            connection.close();
-        } catch (SQLException ex) {
-            System.out.println("There is an error");
-            ex.printStackTrace();
-        }
-          */
+
     
     Server sv = new Server(port);
     
     try 
     {
+       
+      //sv.ConnectToDatabase();
       sv.listen(); //Start listening for connections
+        
+      
     } 
     catch (Exception ex) 
     {

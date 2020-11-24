@@ -140,8 +140,9 @@ public abstract class AbstractClient implements Runnable{
     }else{
         System.out.println("Output stream is not null 3 !");
     }
-    output.writeObject(msg);
     
+    output.writeObject(msg);
+    output.flush();
    
     
     

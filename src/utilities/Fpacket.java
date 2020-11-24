@@ -17,25 +17,16 @@ public class Fpacket implements Serializable{
     String typeOfRequest;
     Object arg1;
     
-   public Fpacket(String typeOfRequest, String arg1){
+   public Fpacket(String typeOfRequest, Object arg1){
         
         this.typeOfRequest = typeOfRequest;
         this.arg1 = arg1;
     }
     
-   public Fpacket(String typeOfRequest, String arg1, String arg2){
-        
-        this.typeOfRequest = typeOfRequest;
-        this.arg1 = arg1;
-    }
    public String getTpeOfRequest(){
        return typeOfRequest;
    }
    public Object getArg1(){
        return arg1;
    }
- 
-    
-    
-    
 }
