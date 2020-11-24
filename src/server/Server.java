@@ -8,10 +8,6 @@ package server;
 import utilities.*;
 import java.sql.*;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ocsf.server.AbstractServer;
@@ -25,10 +21,6 @@ import DataModelLayer.*;
 public class Server extends AbstractServer{
       
   
-     final String url = "jdbc:sqlserver://maikenserver.database.windows.net:1433;DatabaseName=hmsdatabase";
-     final String user = "HMSAdmin";
-     final String password = "NinjaWay123";
-    
     
     
   final public static int DEFAULT_PORT = 5555;
@@ -60,7 +52,6 @@ public class Server extends AbstractServer{
    * @param client The connection from which the message originated.
    */
   public void handleMessageFromClient (Object msg, ConnectionToClient client)
-
   {
         System.out.println("Message received: "  + " from " + client);
         Fpacket Fmsg = (Fpacket)msg;
