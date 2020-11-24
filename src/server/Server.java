@@ -68,21 +68,21 @@ public class Server extends AbstractServer{
         {
             UserModule um= (UserModule)Fmsg.getArg1();
             try {
-                client.sendToClient(QueryRequest.VerifyLogin(um));
-            } catch (IOException ex) {
-                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if(Fmsg.getTpeOfRequest().equals("login"))
-        {
-            UserModule um= (UserModule)Fmsg.getArg1();
-            try {
                 client.sendToClient(QueryRequest.RegisterUser(um));
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if(Fmsg.getTpeOfRequest().equals("addpatient")){
+        else if(Fmsg.getTpeOfRequest().equals("login"))
+        {
+            UserModule um= (UserModule)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.VerifyLogin(um));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("addpatient")){
             Patient p =(Patient)Fmsg.getArg1();
             try {
                 client.sendToClient(QueryRequest.AddPatient(p));
@@ -90,7 +90,7 @@ public class Server extends AbstractServer{
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if(Fmsg.getTpeOfRequest().equals("modifypatient")){
+        else if(Fmsg.getTpeOfRequest().equals("modifypatient")){
             Patient p =(Patient)Fmsg.getArg1();
             try {
                 client.sendToClient(QueryRequest.ModifyPatient(p));
@@ -99,7 +99,16 @@ public class Server extends AbstractServer{
             }
         }
         
-        if(Fmsg.getTpeOfRequest().equals("modifyemployee")){
+        else if(Fmsg.getTpeOfRequest().equals("addemployee")){
+            Patient p =(Patient)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.AddPatient(p));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        else if(Fmsg.getTpeOfRequest().equals("modifyemployee")){
             Employee e =(Employee)Fmsg.getArg1();
             try {
                 client.sendToClient(QueryRequest.ModifyEmployee(e));
@@ -107,57 +116,85 @@ public class Server extends AbstractServer{
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        else if(Fmsg.getTpeOfRequest().equals("addroom")){
+            Room r= (Room)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.AddRoom(r));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("modifyroom")){
+            Room r= (Room)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.ModifyRoom(r));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("addbed")){
+            Bed b= (Bed)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.AddBed(b));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("modifybed")){
+            Bed b= (Bed)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.ModifyBed(b));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("allpatients")){
+            try {
+                client.sendToClient(QueryRequest.GetAllPatients());
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("alldoctors")){
+            try {
+                client.sendToClient(QueryRequest.GetAllDoctors());
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("allnurses")){
+            try {
+                client.sendToClient(QueryRequest.GetAllNurses());
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("alladmin")){
+            try {
+                client.sendToClient(QueryRequest.GetAllAdmin());
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("alladmin")){
+            try {
+                client.sendToClient(QueryRequest.GetAllAdmin());
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
-        
-         //System.out.println(Fmsg.getTpeOfRequest());
+        else if(Fmsg.getTpeOfRequest().equals("requestappointment"))
+        {
+            Appointment a= (Appointment)Fmsg.getArg1();
+            try {
+                client.sendToClient(QueryRequest.RequestAppointment(a));
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+  }
 
-      {
-          
-          
-         System.out.println("Message received: " + msg + " from " + client);
-         Fpacket Fmsg = (Fpacket)msg;
-         String MessageType = Fmsg.getTpeOfRequest();
-         if(MessageType.equals("authentication")){
-              HandleAuthneticationRequests(Fmsg);
-         }
-
-               
-               
-          
-         
-          
-       
-       //this.sendToAllClients(msg);
-  }
-    
-  public void HandleAuthneticationRequests(Fpacket msg){
-      
-      
-              System.out.println("Handle Authnetication");
-              System.out.println(msg.getTpeOfRequest());
-              System.out.println(msg.getArg1());
-              System.out.println(msg.getArg2());
-              
-        
-        
-      
-  }
-  
-  protected void ConnectToDatabase() throws ClassNotFoundException {
-      
-       
-       try {
-              Class.forName("com.mysql.jdbc.Driver");
-          
-             Connection connection = DriverManager.getConnection(url, user, password);
-             System.out.println("Connected");
-             
-         } catch (SQLException ex) {
-             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-             System.out.print("Error creating connection: "+ex);
-         }
-  }
-  
   
   
   
@@ -171,13 +208,6 @@ public class Server extends AbstractServer{
         
       System.out.println("Server listening for connections on port " + getPort());
         
-      
-         try {
-             ConnectToDatabase();
-         } catch (ClassNotFoundException ex) {
-             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
-         }
-     
   }
   
   /**
@@ -211,6 +241,7 @@ public class Server extends AbstractServer{
     {
       port = DEFAULT_PORT; //Set port to 5555
     }
+
 
     
     Server sv = new Server(port);

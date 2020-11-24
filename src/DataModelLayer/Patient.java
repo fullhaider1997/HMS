@@ -21,9 +21,10 @@ public class Patient implements Serializable{
     private LocalDate dob;
     private String address;
     private String phoneNumber;
+    private String conditions;
     
     
-    public Patient(int ID,String firstName, String lastName , LocalDate dob, String address, String phoneNumber)
+    public Patient(int ID,String firstName, String lastName , LocalDate dob, String address, String phoneNumber, String conditions)
     {
         this.ID = ID;
         this.firstName = firstName;
@@ -31,14 +32,16 @@ public class Patient implements Serializable{
         this.dob = dob;
         this.address = address;
         this.phoneNumber =phoneNumber;
+        this.conditions= conditions;
     }
-    public Patient(String firstName, String lastName , LocalDate dob, String address, String phoneNumber){
+    public Patient(String firstName, String lastName , LocalDate dob, String address, String phoneNumber, String conditions){
         
         this.firstName = firstName;
         this.lastName = lastName;
         this.dob = dob;
         this.address = address;
         this.phoneNumber =phoneNumber;
+        this.conditions = conditions;
     }
     
     
@@ -57,7 +60,9 @@ public class Patient implements Serializable{
     public void setPhoneNumber(String phoneNumber){
         this.phoneNumber= phoneNumber;   
     }
-    
+    public void setConditions(String conditions){
+        this.conditions =conditions;
+    }
     
     public int getID(){
         return ID;
@@ -76,5 +81,8 @@ public class Patient implements Serializable{
     }
     public String getPhoneNumber(){
         return phoneNumber;
+    }
+    public String getConditions(){
+        return conditions;
     }
 }
