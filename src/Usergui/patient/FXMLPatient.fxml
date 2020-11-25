@@ -14,16 +14,16 @@
          <left>
             <VBox prefHeight="400.0" prefWidth="133.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="152.0" fitWidth="211.0" pickOnBounds="true">
+                  <ImageView fitHeight="165.0" fitWidth="211.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../../../src/icons/logo.PNG" />
+                        <Image url="@../../icons/logo.PNG" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" onAction="#AppointmentPatientTab" prefHeight="89.0" prefWidth="211.0" style="-fx-background-color: #87CEFA; -fx-border-color: #000000;" text="      Appointment">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../src/icons/appointment.png" />
+                              <Image url="@../../icons/appointment.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -31,7 +31,7 @@
                      <graphic>
                         <ImageView fitHeight="51.0" fitWidth="54.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../src/icons/medicalhistory.png" />
+                              <Image url="@../../icons/medicalhistory.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
@@ -39,11 +39,11 @@
                      <graphic>
                         <ImageView fitHeight="42.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../src/icons/feedback.png" />
+                              <Image url="@../../icons/feedback.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Button mnemonicParsing="false" prefHeight="87.0" prefWidth="211.0" style="-fx-background-color: #87CEFA; -fx-border-color: #000000;" text="Patient Guide">
+                  <Button mnemonicParsing="false" onAction="#PatientGuideTab" prefHeight="87.0" prefWidth="211.0" style="-fx-background-color: #87CEFA; -fx-border-color: #000000;" text="Patient Guide">
                      <graphic>
                         <ImageView fitHeight="50.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                            <image>

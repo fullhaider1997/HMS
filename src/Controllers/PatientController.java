@@ -59,6 +59,17 @@ public class PatientController implements Initializable {
 	   
 	      
 	 }
+	 
+	 public void PatientGuideTab(ActionEvent event) throws IOException{
+	      
+	        Utilities utility = new Utilities();
+	     
+	     
+	        utility.EmbeddFXMLIntoFXML(event, "/Usergui/patient/FXMLpatientGuide.fxml", "/Usergui/patient/FXMLPatient.fxml");
+	        
+	   
+	      
+	 }
 	
 	
 	
