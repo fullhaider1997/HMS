@@ -21,7 +21,7 @@
       <TableView fx:id="tabelView" layoutX="13.0" layoutY="100.0" prefHeight="402.0" prefWidth="412.0">
         <columns>
           <TableColumn fx:id="firstName" prefWidth="128.80001521110535" text="First name" />
-          <TableColumn fx:id="department" prefWidth="156.8000030517578" text="Department" />
+          <TableColumn fx:id="address" prefWidth="156.8000030517578" text="Address" />
             <TableColumn fx:id="jobTitle" prefWidth="135.2000732421875" text="Job Title" />
         </columns>
       </TableView>

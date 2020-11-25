@@ -26,11 +26,9 @@ public class Utilities {
     public void EmbeddFXMLIntoFXML(ActionEvent event, String embeddedFXML, String backgroundFXML) throws IOException{
         
        
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        
-        AnchorPane HosptialEmployeeForm = (AnchorPane)fxmlLoader.load(getClass().getResource(embeddedFXML));
+        AnchorPane HosptialEmployeeForm = (AnchorPane)FXMLLoader.load(getClass().getResource(embeddedFXML));
        
-        StackPane AdminScene = (StackPane)fxmlLoader.load(getClass().getResource(backgroundFXML));
+        StackPane AdminScene = (StackPane)FXMLLoader.load(getClass().getResource(backgroundFXML));
         
         BorderPane borderpane =(BorderPane)  AdminScene.lookup("#BorderPane");
         

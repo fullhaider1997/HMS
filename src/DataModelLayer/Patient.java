@@ -15,7 +15,11 @@ import java.io.Serializable;
 
 public class Patient implements Serializable{
     
-    private int ID;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int ID;
     private String firstName;
     private String lastName;
     private LocalDate dob;
@@ -45,7 +49,14 @@ public class Patient implements Serializable{
     }
     
     
-    public void setFirstName(String firstName){
+    public Patient(String string, String string2, String string3) {
+		// TODO Auto-generated constructor stub
+    	this.firstName = string;
+    	this.lastName = string2;
+    	this.conditions = string3;
+	}
+    
+	public void setFirstName(String firstName){
         this.firstName= firstName;
     }
     public void setLastName(String lastname){

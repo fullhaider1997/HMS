@@ -7,6 +7,9 @@ package utilities;
 
 import DataModelLayer.*;
 import java.sql.*;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.util.*;
 import java.util.Map;
 import java.util.logging.Level;
@@ -379,6 +382,7 @@ public class QueryRequest {
         }
         return verify;
     }
+     
     public static String AddBed(Bed b){
          String verify="";
         try{
@@ -468,8 +472,8 @@ public class QueryRequest {
     }
     
     //sends back a list of patients
-    public static ArrayList<Patient> GetAllPatients(){
-        ArrayList<Patient> patients= new ArrayList<Patient>();
+    public static ObservableList<Patient> GetAllPatients(){
+        ObservableList<Patient> patients= FXCollections.observableArrayList();
          try{
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Getting all patients..");
@@ -493,8 +497,8 @@ public class QueryRequest {
          return patients;
     }
     
-     public static ArrayList<Employee> GetAllDoctors(){
-        ArrayList<Employee> doctors= new ArrayList<Employee>();
+     public static ObservableList<Employee> GetAllDoctors(){
+    	 ObservableList<Employee> doctors= FXCollections.observableArrayList();
          try{
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Getting all doctors..");
@@ -518,8 +522,8 @@ public class QueryRequest {
          return doctors;
     }
      
-    public static ArrayList<Employee> GetAllNurses(){
-        ArrayList<Employee> nurses= new ArrayList<Employee>();
+    public static ObservableList<Employee> GetAllNurses(){
+        ObservableList<Employee> nurses= FXCollections.observableArrayList();
          try{
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Getting all nurses..");
@@ -543,8 +547,8 @@ public class QueryRequest {
          return nurses;
     }
     
-    public static ArrayList<Employee> GetAllAdmin(){
-        ArrayList<Employee> admins= new ArrayList<Employee>();
+    public static ObservableList<Employee> GetAllAdmin(){
+        ObservableList<Employee> admins= FXCollections.observableArrayList();
          try{
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Getting all admins..");
@@ -568,8 +572,8 @@ public class QueryRequest {
          return admins;
     }
     
-    public static ArrayList<UserModule> GetAllUsers(){
-        ArrayList<UserModule> users= new ArrayList<UserModule>();
+    public static ObservableList<UserModule> GetAllUsers(){
+        ObservableList<UserModule> users= FXCollections.observableArrayList();
          try{
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Getting all users..");

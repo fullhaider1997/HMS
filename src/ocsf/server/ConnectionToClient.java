@@ -68,7 +68,7 @@ public class ConnectionToClient extends Thread{
 	 * servers will want to store many different types of information about each
 	 * client. Used by the setInfo and getInfo methods.
 	 */
-	private HashMap				savedInfo	= new HashMap(10);
+	private HashMap<String, Object>				savedInfo	= new HashMap<String, Object>(10);
 
 	// CONSTRUCTORS *****************************************************
 

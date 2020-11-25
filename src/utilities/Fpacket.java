@@ -14,7 +14,11 @@ import java.util.HashMap;
  */
 public class Fpacket implements Serializable{
     
-    String typeOfRequest;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String typeOfRequest;
     Object arg1;
     
    public Fpacket(String typeOfRequest, Object arg1){

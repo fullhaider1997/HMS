@@ -17,25 +17,27 @@ import javafx.collections.ObservableList;
  * @author Haider
  */
 public class Room implements Serializable{
-    private String roomID;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String roomID;
     private String type;
     private String StatusAvailability;
     private int numberOfBeds;
     
     
     
-    public Room(String roomID, String type, int string,String StatusAvailability){
+    public Room(String roomID, String type, int numberOfBeds,String StatusAvailability){
        
         this.roomID = roomID;
         this.type = type;
-        this.numberOfBeds = string;
+        this.numberOfBeds = numberOfBeds;
         this.StatusAvailability = StatusAvailability;
         
     }
     
-   
-
-	public void setRoomID(String roomID){
+    public void setRoomID(String roomID){
         this.roomID = roomID;
     }
     public void setType(String type){
