@@ -28,11 +28,11 @@ public class Utilities {
        
         FXMLLoader fxmlLoader = new FXMLLoader();
         
-        AnchorPane HosptialEmployeeForm = (AnchorPane)fxmlLoader.load(getClass().getResource(embeddedFXML));
+        AnchorPane InjectedScene = (AnchorPane)fxmlLoader.load(getClass().getResource(embeddedFXML));
        
-        StackPane AdminScene = (StackPane)fxmlLoader.load(getClass().getResource(backgroundFXML));
+        StackPane Scene = (StackPane)fxmlLoader.load(getClass().getResource(backgroundFXML));
         
-        BorderPane borderpane =(BorderPane)  AdminScene.lookup("#BorderPane");
+        BorderPane borderpane =(BorderPane)  Scene.lookup("#BorderPane");
         
          if(borderpane!=null){
              System.out.println("border pane exist");
@@ -40,8 +40,8 @@ public class Utilities {
              System.out.println("border doesn't exist");
          }
          
-         borderpane.setCenter(HosptialEmployeeForm );
-         Scene NextScene = new Scene(AdminScene);
+         borderpane.setCenter(InjectedScene );
+         Scene NextScene = new Scene(Scene);
          Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
          window.setScene(NextScene);
          window.show();

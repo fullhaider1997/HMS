@@ -132,10 +132,6 @@ public class LoginSystemController implements Initializable,ChatIF {
                client.sendToServer(fpacket);
                
                
-               
-               
-               
-               
            }else{
                
                System.out.println("Client failed to connect !");
@@ -184,7 +180,7 @@ public class LoginSystemController implements Initializable,ChatIF {
            
        } else if (patientUsername.equals(username)){
            
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLPatient.fxml"));
+        StackPane parentScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/patient/FXMLPatient.fxml"));
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
