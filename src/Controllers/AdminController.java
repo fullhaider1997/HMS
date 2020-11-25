@@ -41,20 +41,20 @@ import utilities.Utilities;
  * @author Haider
  */
 public class AdminController implements Initializable,ChatIF {
-
+	
      static Client adminClient;
      static String name;
     final public static int DEFAULT_PORT = 5555;
     String host = "";
+    Utilities utility = new Utilities();
     
     
       public void setClient(Client client) throws IOException {
           
           
-          this.name = "haider";
-          this.adminClient = client;
-           
-        
+          AdminController.name = "haider";
+          AdminController.adminClient = client;
+          
       }
       
     
@@ -69,8 +69,6 @@ public class AdminController implements Initializable,ChatIF {
     }    
     
      public void PatientTab(ActionEvent event) throws IOException{
-      
-        Utilities utility = new Utilities();
      
         
         if(name != null){
@@ -84,12 +82,10 @@ public class AdminController implements Initializable,ChatIF {
             System.out.println("adminClient is not null 1 ! ");
         }
          
-         adminClient.sendToServer("Hello from patient tab");
+         //adminClient.sendToServer("Hello from patient tab");
        
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLPatientView.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
-        
-   
       
     }  
     public void EmployeeTab(ActionEvent event) throws IOException{
@@ -99,11 +95,7 @@ public class AdminController implements Initializable,ChatIF {
         }else{
             System.out.println("adminClient is not null 2 ! ");
         }
-        
-        
-         
      
-        Utilities utility = new Utilities();
      
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
      
@@ -115,7 +107,7 @@ public class AdminController implements Initializable,ChatIF {
     
     public void HosptialArragmentTab(ActionEvent event) throws IOException {
         
-        Utilities utility = new Utilities();
+     
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialArrangment.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
         
@@ -124,7 +116,7 @@ public class AdminController implements Initializable,ChatIF {
     
     public void AdminGuideTab(ActionEvent event) throws IOException {
        
-        Utilities utility = new Utilities();
+        
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLAdminGuide.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
         
@@ -132,7 +124,7 @@ public class AdminController implements Initializable,ChatIF {
     
    public void ManageAppointmentsTab(ActionEvent event) throws IOException{
        
-        Utilities utility = new Utilities();
+        
         
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLManagingAppointments.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
       
@@ -141,7 +133,7 @@ public class AdminController implements Initializable,ChatIF {
    
    public void ExportDataTab(ActionEvent event) throws IOException {
        
-       Utilities utility = new Utilities();
+      
         
        utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLExportData.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
        
@@ -168,7 +160,6 @@ public class AdminController implements Initializable,ChatIF {
             
             try {
                 adminClient = new Client(host, DEFAULT_PORT, this);
-          
                 adminClient.openConnection();
             } catch (IOException ex) {
                 Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);

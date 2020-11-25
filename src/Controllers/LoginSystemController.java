@@ -7,6 +7,8 @@
 package Controllers;
 
 import java.io.IOException;
+import utilities.QueryRequest;
+import DataModelLayer.UserModule;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -57,6 +59,7 @@ public class LoginSystemController implements Initializable,ChatIF {
     private final String patientUsername = "patient";
     private final String adminUsername = "admin";
     private final String password = "123";
+    
     final public static int DEFAULT_PORT = 5555;
     Fpacket fpacket;
     
@@ -87,7 +90,7 @@ public class LoginSystemController implements Initializable,ChatIF {
         System.out.println("Hello world");
          fxmlLoader = new FXMLLoader();
      
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLRegistrationSystem.fxml"));
+        AnchorPane parentScene = (AnchorPane)FXMLLoader.load(getClass().getResource("/Usergui/FXMLRegistrationSystem.fxml"));
         
         
         Scene NextScene = new Scene(parentScene);
@@ -127,14 +130,11 @@ public class LoginSystemController implements Initializable,ChatIF {
                
                System.out.println("Client is connected");
                
-               fpacket = new Fpacket("authentication",username);
+               UserModule user = new UserModule(username, password);
+               
+               fpacket = new Fpacket("login",user);
              
                client.sendToServer(fpacket);
-               
-               
-               
-               
-               
                
            }else{
                
@@ -145,7 +145,7 @@ public class LoginSystemController implements Initializable,ChatIF {
           
              
            
-        if(adminUsername.equals(username))
+        if(adminUsername.equals("admin"))
          {
           
           
@@ -174,7 +174,7 @@ public class LoginSystemController implements Initializable,ChatIF {
  
        }else if(staffUsername.equals(username)){
            
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLMedical.fxml"));
+        AnchorPane parentScene = (AnchorPane)FXMLLoader.load(getClass().getResource("/Usergui/FXMLMedical.fxml"));
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
@@ -184,7 +184,7 @@ public class LoginSystemController implements Initializable,ChatIF {
            
        } else if (patientUsername.equals(username)){
            
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLPatient.fxml"));
+        AnchorPane parentScene = (AnchorPane)FXMLLoader.load(getClass().getResource("/Usergui/FXMLPatient.fxml"));
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
