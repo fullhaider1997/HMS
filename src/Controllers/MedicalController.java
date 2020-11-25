@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import utilities.Utilities;
 
 /**
  * FXML Controller class
@@ -25,19 +26,39 @@ public class MedicalController implements Initializable {
 
     
     
+	  public void ViewPatientsMedicalHistorytTab(ActionEvent event) throws IOException{
+	      
+	        Utilities utility = new Utilities();
+	     
+	   
+	        utility.EmbeddFXMLIntoFXML(event, "/Usergui/doctor/FXMLViewPatients.fxml", "/Usergui/doctor/FXMLMedical.fxml");
+	        
+	    
+	    }  
+	  
+	  public void ViewAppointmenttTab(ActionEvent event) throws IOException{
+	      
+	        Utilities utility = new Utilities();
+	     
+	   
+	        utility.EmbeddFXMLIntoFXML(event, "/Usergui/doctor/FXMLViewAppointment.fxml", "/Usergui/doctor/FXMLMedical.fxml");
+	        
+	    
+	    }  
+	  public void DoctorGuidetTab(ActionEvent event) throws IOException{
+	      
+	        Utilities utility = new Utilities();
+	     
+	   
+	        utility.EmbeddFXMLIntoFXML(event, "/Usergui/doctor/FXMLDoctorGuide.fxml", "/Usergui/doctor/FXMLMedical.fxml");
+	        
+	    
+	    }  
+	
+	
+	
     
-      public void ButtonGoToLogin(ActionEvent event) throws IOException{
-        
-        System.out.println("Hello world");
-        Parent parentScene = FXMLLoader.load(getClass().getResource("/Usergui/FXMLLoginSystem.fxml"));
-        
-        Scene NextScene = new Scene(parentScene);
-        
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(NextScene);
-        window.show();
-    }    
+   
     
     
     

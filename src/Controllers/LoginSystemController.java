@@ -29,6 +29,9 @@ import common.ChatIF;
 import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import DataModelLayer.UserModule;
+
 import java.net.URL;
 import java.util.HashMap;
 import javafx.scene.Parent;
@@ -110,6 +113,10 @@ public class LoginSystemController implements Initializable,ChatIF {
         String username = userNameField.getText();
         String password = passwordField.getText();
         String host = "";
+        String SessionType = "";
+        Object msg = null;
+      
+        
       
         
         //Check if user name is valid or not
@@ -127,11 +134,19 @@ public class LoginSystemController implements Initializable,ChatIF {
                
                System.out.println("Client is connected");
                
-               fpacket = new Fpacket("authentication",username);
+               UserModule user = new UserModule(username,password);
+               
+               fpacket = new Fpacket("authentication",user);
              
                client.sendToServer(fpacket);
                
-               
+              
+			   client.handleMessageFromServer(msg);
+			   
+			   SessionType = msg.toString();
+			   System.out.println("Server msg"+ SessionType);
+			     
+			     
            }else{
                
                System.out.println("Client failed to connect !");
@@ -170,7 +185,7 @@ public class LoginSystemController implements Initializable,ChatIF {
  
        }else if(staffUsername.equals(username)){
            
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLMedical.fxml"));
+        StackPane parentScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/doctor/FXMLMedical.fxml"));
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
