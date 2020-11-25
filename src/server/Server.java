@@ -55,11 +55,13 @@ public class Server extends AbstractServer{
   {
         System.out.println("Message received: "  + " from " + client);
         Fpacket Fmsg = (Fpacket)msg;
+        Fpacket reply;
         if(Fmsg.getTpeOfRequest().equals("register"))
         {
             UserModule um= (UserModule)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.RegisterUser(um));
             try {
-                client.sendToClient(QueryRequest.RegisterUser(um));
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -67,33 +69,37 @@ public class Server extends AbstractServer{
         else if(Fmsg.getTpeOfRequest().equals("login"))
         {
             UserModule um= (UserModule)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.VerifyLogin(um));
             try {
-                client.sendToClient(QueryRequest.VerifyLogin(um));
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(Fmsg.getTpeOfRequest().equals("addpatient")){
             Patient p =(Patient)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.AddPatient(p));
             try {
-                client.sendToClient(QueryRequest.AddPatient(p));
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(Fmsg.getTpeOfRequest().equals("modifypatient")){
             Patient p =(Patient)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.ModifyPatient(p));
             try {
-                client.sendToClient(QueryRequest.ModifyPatient(p));
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
         else if(Fmsg.getTpeOfRequest().equals("addemployee")){
-            Patient p =(Patient)Fmsg.getArg1();
+            Employee e =(Employee)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.AddEmployee(e));
             try {
-                client.sendToClient(QueryRequest.AddPatient(p));
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -101,14 +107,16 @@ public class Server extends AbstractServer{
         
         else if(Fmsg.getTpeOfRequest().equals("modifyemployee")){
             Employee e =(Employee)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.ModifyEmployee(e));
             try {
-                client.sendToClient(QueryRequest.ModifyEmployee(e));
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(Fmsg.getTpeOfRequest().equals("addroom")){
             Room r= (Room)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.AddRoom(r));
             try {
                 client.sendToClient(QueryRequest.AddRoom(r));
             } catch (IOException ex) {
@@ -117,59 +125,75 @@ public class Server extends AbstractServer{
         }
         else if(Fmsg.getTpeOfRequest().equals("modifyroom")){
             Room r= (Room)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.ModifyRoom(r));
             try {
-                client.sendToClient(QueryRequest.ModifyRoom(r));
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(Fmsg.getTpeOfRequest().equals("addbed")){
             Bed b= (Bed)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.AddBed(b));
             try {
-                client.sendToClient(QueryRequest.AddBed(b));
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(Fmsg.getTpeOfRequest().equals("modifybed")){
             Bed b= (Bed)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.ModifyBed(b));
             try {
-                client.sendToClient(QueryRequest.ModifyBed(b));
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(Fmsg.getTpeOfRequest().equals("allpatients")){
+            reply = new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.GetAllPatients());
             try {
-                client.sendToClient(QueryRequest.GetAllPatients());
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(Fmsg.getTpeOfRequest().equals("alldoctors")){
+            reply = new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.GetAllDoctors());
             try {
-                client.sendToClient(QueryRequest.GetAllDoctors());
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(Fmsg.getTpeOfRequest().equals("allnurses")){
+            reply = new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.GetAllNurses());
             try {
-                client.sendToClient(QueryRequest.GetAllNurses());
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         else if(Fmsg.getTpeOfRequest().equals("alladmin")){
+              reply = new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.GetAllAdmin());
             try {
-                client.sendToClient(QueryRequest.GetAllAdmin());
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        else if(Fmsg.getTpeOfRequest().equals("alladmin")){
+        else if(Fmsg.getTpeOfRequest().equals("allusers")){
+            reply = new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.GetAllUsers());
             try {
-                client.sendToClient(QueryRequest.GetAllAdmin());
+                client.sendToClient(reply);
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("allemployees")){
+            reply = new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.GetAllEmployees());
+            try {
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
