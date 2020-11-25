@@ -6,6 +6,7 @@
 package Controllers.admin;
 
 import DataModelLayer.Patient;
+import utilities.QueryRequest;
 import DataModelLayer.Room;
 import client.Client;
 import java.io.IOException;
@@ -19,6 +20,9 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import Controllers.AdminController;
+
 import static javafx.application.Application.launch;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,16 +58,16 @@ public class PatientViewController implements Initializable{
     private Label label;
     @FXML private TextField filterFieldPatient;
     @FXML private TableView<Patient> tableViewPatients; 
-    @FXML private TableColumn <Patient, String> firstName;
-    @FXML private TableColumn <Patient, String> lastName;
-    @FXML private TableColumn <Patient, String> typeOfPatient;
  
-     private final ObservableList<Patient> patientDataList = FXCollections.observableArrayList();
-    private Client adminClient;
+     //private final ObservableList<Patient> patientDataList = FXCollections.observableArrayList();
+    private final ObservableList<Patient> patientDataList = QueryRequest.GetAllPatients();
+    private static Client adminClient;
+    static String name;
     
     public void setClient(Client client) throws IOException {
-          
-          this.adminClient = client; 
+    	
+    	  PatientViewController.name = "haider";
+          PatientViewController.adminClient = client; 
          
           adminClient.sendToServer("We are still connected");
           
@@ -74,18 +78,28 @@ public class PatientViewController implements Initializable{
      
      
      
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void initialize(URL location, ResourceBundle resources) {
        
+    	TableColumn <Patient, Integer> ID = new TableColumn<Patient, Integer>("ID");
+        TableColumn<Patient, String> firstname = new TableColumn<Patient, String>("FirstName");        
+        TableColumn<Patient, String> lastname = new TableColumn<Patient, String>("LastName");
+        TableColumn<Patient, String> dob = new TableColumn<Patient, String>("Date of Birth");
+        TableColumn<Patient, String> address = new TableColumn<Patient, String>("Address");
+        TableColumn<Patient, String> phonenumber = new TableColumn<Patient, String>("Phone Number");
+        TableColumn<Patient, String> condition = new TableColumn<Patient, String>("Condition");
         
-        firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        typeOfPatient.setCellValueFactory(new PropertyValueFactory<>("typeOfPatient"));
-        LocalDate dob = null;
-        Patient patient1 = new Patient("Haider","Ibrahim", dob.now(), "Inpatient"," 65 falconer drive","414-414-414");
-        Patient patient2 = new Patient("Alex","John", dob.now(), "Outpatient"," 25 morning drive","414-414-414");
-      
-         patientDataList.addAll(patient1,patient2);
+        ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        firstname.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        condition.setCellValueFactory(new PropertyValueFactory<>("conditions"));
+        dob.setCellValueFactory(new PropertyValueFactory<>("DOB"));
+        address.setCellValueFactory(new PropertyValueFactory<>("Address"));
+        phonenumber.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
+        
+        tableViewPatients.getColumns().addAll(ID,firstname, lastname, dob, address, phonenumber, condition);
+  
         
         FilteredList<Patient> filterdData = new FilteredList<>(patientDataList, b-> true);
 
@@ -98,21 +112,35 @@ public class PatientViewController implements Initializable{
                  if(newValue == null || newValue.isEmpty()){
                      return true;
                  }
+                 if(newValue == null || newValue.isEmpty()){
+                     return true;
+                 }
                 
                  String lowerCaseFilter = newValue.toLowerCase();
                  
-                 if(Patient.getFirstName().toLowerCase().contains(lowerCaseFilter) ){
+                 if(Integer.toString(Patient.getID()).toLowerCase().contains(lowerCaseFilter) ){
+                     return true;
+                 }
+                 else if(Patient.getFirstName().toLowerCase().contains(lowerCaseFilter) ){
                      return true;
                  }
                  else if (Patient.getLastName().toLowerCase().contains(lowerCaseFilter))
                  {
                      return true;
                  }
-                 else if(Patient.getAddress().toLowerCase().contains(lowerCaseFilter)){
-                     ;
+                 else if(Patient.getDOB().toLowerCase().contains(lowerCaseFilter) ){
                      return true;
                  }
-                
+                 else if(Patient.getAddress().toLowerCase().contains(lowerCaseFilter) ){
+                     return true;
+                 }
+                 else if(Patient.getPhoneNumber().toLowerCase().contains(lowerCaseFilter) ){
+                     return true;
+                 }
+                 else if (Patient.getConditions().toLowerCase().contains(lowerCaseFilter))
+                 {
+                     return true;
+                 }
                  else 
                      return false;
              

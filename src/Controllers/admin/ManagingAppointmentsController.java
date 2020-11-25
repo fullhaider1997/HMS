@@ -17,7 +17,7 @@ import javafx.fxml.Initializable;
 public class ManagingAppointmentsController implements Initializable {
 
     /**
-     * Initializes the controller class.
+     * Initialises the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

@@ -17,6 +17,7 @@ import utilities.Utilities;
  * @author Haider
  */
 public class HosptialEmployeesFormController implements Initializable {
+	Utilities utility = new Utilities();
 
     /**
      * Initializes the controller class.
@@ -30,17 +31,12 @@ public class HosptialEmployeesFormController implements Initializable {
     
     public void ExitButton(ActionEvent event) throws IOException{
         
-        Utilities utility = new Utilities();
-        
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
         
     }
     
     public void confirmButton(ActionEvent event) throws IOException{
-        
-        
-        Utilities utility = new Utilities();
-        
+       
         utility.EmbeddFXMLIntoFXML(event, "/Usergui/Admin/FXMLHosptialEmployees.fxml", "/Usergui/Admin/FXMLAdmin.fxml");
     }
     

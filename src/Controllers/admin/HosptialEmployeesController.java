@@ -37,7 +37,7 @@ public class HosptialEmployeesController implements Initializable {
     @FXML private TextField filterField;
     @FXML private TableView<Employee> tabelView; 
     @FXML private TableColumn <Employee, String> firstName;
-    @FXML private TableColumn <Employee, String> department;
+    @FXML private TableColumn <Employee, String> address;
     @FXML private TableColumn <Employee, String> jobTitle;
     
     
@@ -62,13 +62,15 @@ public class HosptialEmployeesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        
         firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-        department.setCellValueFactory(new PropertyValueFactory<>("department"));
+        address.setCellValueFactory(new PropertyValueFactory<>("address"));
         jobTitle.setCellValueFactory(new PropertyValueFactory<>("JobTitle"));
-        LocalDate dob = null;
-        Employee emp1 = new Employee(0, "Haider","Neurology",dob.now(), "falcner 12", "4123213213", "Nurse", "Heart");
-        Employee emp2 = new Employee(1, "Joe","Internal surgery",dob.now(), "Street 32", "23235452", "Doctor", "Brain");
-        Employee emp3 = new Employee(2, "Alaa","radiology",dob.now(), "Alex 23", "232323643", "Doctor", "leg");
-        Employee emp4 = new Employee(3, "Biden","Administrative",dob.now(), "mohake street ", "23131245341", "Doctor", "heart");
+        
+        LocalDate date = LocalDate.now();
+        
+        Employee emp1 = new Employee("Haider", "Michigan","Neurology");
+        Employee emp2 = new Employee("Joe", "Toronto","Internal surgery");
+        Employee emp3 = new Employee("Alaa","Saudi Arabia","radiology");
+        Employee emp4 = new Employee("Biden", "Bahamas","Administrative");
         
         employeeDataList.addAll(emp1,emp2,emp3,emp4);
         
@@ -94,6 +96,7 @@ public class HosptialEmployeesController implements Initializable {
                  {
                      return true;
                  }
+                 
                  else if(employee.getJobTitle().toLowerCase().contains(lowerCaseFilter)){
                      return true;
                  }
