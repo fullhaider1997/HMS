@@ -6,6 +6,7 @@
 package client;
 
 import common.ChatIF;
+import utilities.*;
 import java.io.IOException;
 import ocsf.client.AbstractClient;
 
@@ -47,7 +48,41 @@ public class Client extends AbstractClient  {
    */
   public void handleMessageFromServer(Object msg) 
   {
-    clientUI.display(msg.toString());
+    //clientUI.display(msg.toString());
+      
+      Fpacket fp = (Fpacket)msg;
+      if(fp.getTpeOfRequest().equals("login"))
+      {
+          if(fp.getArg1().equals("patient"))
+          {
+              //show patient UI
+              //SessionType= "patient";
+          }
+          else if(fp.getArg1().equals("admin")){
+              //show admin UI
+               //SessionType= "admin";
+          }
+          else if(fp.getArg1().equals("doctor")){
+              //show show doctor UI
+               //SessionType= "doctor";
+          }
+          //do the same for nurse
+      }
+      
+      if(fp.getTpeOfRequest().equals("register"))
+      {
+          if(fp.getArg1().equals("success"))
+          {
+              //show something like "registration successful log in now"
+          }
+          else if(fp.getArg1().equals("invalidusername")){
+              //show something like "username already used try a different one"
+          }
+          else if(fp.getArg1().equals("invalidID")){
+              //show something like "ID doesnt exist, contact Admin to get your ID"
+          }
+      }
+    
    
         
     
