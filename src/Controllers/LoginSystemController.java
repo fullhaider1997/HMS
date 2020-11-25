@@ -139,12 +139,10 @@ public class LoginSystemController implements Initializable,ChatIF {
                fpacket = new Fpacket("authentication",user);
              
                client.sendToServer(fpacket);
-               
-              
-			   client.handleMessageFromServer(msg);
 			   
 			   SessionType = msg.toString();
 			   System.out.println("Server msg"+ SessionType);
+			   
 			     
 			     
            }else{
