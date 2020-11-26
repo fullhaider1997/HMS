@@ -9,6 +9,8 @@ package Controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,6 +57,8 @@ public class LoginSystemController implements Initializable,ChatIF {
     @FXML
     private LoginSystemController controllerClass;
     FXMLLoader fxmlLoader;
+    @FXML
+    private Label StatusField;
     
     private final String staffUsername = "medical";
     private final String patientUsername = "patient";
@@ -62,15 +66,22 @@ public class LoginSystemController implements Initializable,ChatIF {
     private final String password = "123";
     final public static int DEFAULT_PORT = 5555;
     Fpacket fpacket;
-    
+    String host = "";
+    String SessionType = "";
+    Object msg = null;
+  
     
     Client client = null;
     
-    String host = "";
+   
     
     AdminController admincontroller;
  
-    
+  
+    public void setSessionType(String string) {
+    	
+    	SessionType = string;
+    }
     
     
     @Override
@@ -106,21 +117,19 @@ public class LoginSystemController implements Initializable,ChatIF {
      *
      * @param event
      * @throws IOException
+     * @throws InterruptedException 
      */
-    public void Login(ActionEvent event)throws IOException{
+    public void Login(ActionEvent event)throws IOException, InterruptedException{
 
         //Get password and username from user
         String username = userNameField.getText();
         String password = passwordField.getText();
-        String host = "";
-        String SessionType = "";
-        Object msg = null;
-      
+        
         
       
         
         //Check if user name is valid or not
-        if(username == null || password == null){
+        if(username == null || password == null) {
              System.out.println("user name is null");
         }
         
@@ -136,43 +145,47 @@ public class LoginSystemController implements Initializable,ChatIF {
                
                UserModule user = new UserModule(username,password);
                
-               fpacket = new Fpacket("authentication",user);
+               fpacket = new Fpacket("login",user);
              
                client.sendToServer(fpacket);
 			   
-			   SessionType = msg.toString();
-			   System.out.println("Server msg"+ SessionType);
-			   
-			     
-			     
-           }else{
+             
+           }else
+             {
                
                System.out.println("Client failed to connect !");
                client.sendToServer("Failed to connect !");
       
              }
-          
-             
            
-        if(adminUsername.equals(username))
+           //TimeUnit.SECONDS.sleep(2);
+        
+           //Wait for server reply
+           while(client.getSessionType()==null) {
+        	   
+        	  System.out.println("Waiting for server reply....");
+           }
+           
+           
+           if(client.getSessionType()=="invalidlogin") 
+             {
+              StatusField.setStyle("-fx-border-color:red; -fx-background-color: red;");
+              StatusField.setText("Wrong password or username !");
+           }
+           
+        if(adminUsername.equals(client.getSessionType()))
          {
           
           
-        
+              
          fxmlLoader = new FXMLLoader(); 
          fxmlLoader.setLocation(LoginSystemController.class.getResource("/Usergui/Admin/FXMLAdmin.fxml"));
          
          StackPane parentScene = fxmlLoader.load();
          
          AdminController admincontroller = fxmlLoader.getController();
-  
-         if(admincontroller == null){
-             System.out.println("Admin controller is null !");
-         }else{
-             System.out.println("Admin controller is not null !");
-         }
-     
-        
+         admincontroller.setUserName("Username: " +username);
+        // admincontroller.setClient(client);
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
@@ -181,7 +194,7 @@ public class LoginSystemController implements Initializable,ChatIF {
          
        
  
-       }else if(staffUsername.equals(username)){
+       }else if(staffUsername.equals(client.getSessionType())){
            
         StackPane parentScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/doctor/FXMLMedical.fxml"));
         Scene NextScene = new Scene(parentScene);
@@ -191,7 +204,7 @@ public class LoginSystemController implements Initializable,ChatIF {
      
         window.show();
            
-       } else if (patientUsername.equals(username)){
+       } else if (patientUsername.equals(client.getSessionType())){
            
         StackPane parentScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/patient/FXMLPatient.fxml"));
         Scene NextScene = new Scene(parentScene);

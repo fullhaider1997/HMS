@@ -27,6 +27,7 @@
                   </Text>
                </children>
             </HBox>
+            <Label fx:id="StatusField" alignment="CENTER" prefHeight="17.0" prefWidth="648.0" text="Status:                    " textFill="#4d2020" />
             <HBox alignment="CENTER" prefHeight="141.0" prefWidth="630.0" VBox.vgrow="ALWAYS">
                <children>
                   <GridPane prefHeight="249.0" prefWidth="200.0">

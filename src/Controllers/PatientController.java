@@ -9,11 +9,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import utilities.Utilities;
 
@@ -24,6 +26,16 @@ import utilities.Utilities;
  */
 public class PatientController implements Initializable {
 
+	 @FXML
+	 private Label StatusField;
+    
+
+    public void setUserName(String username) throws IOException {
+        
+        
+        StatusField.setText(username);
+      
+    }
     
 	
 	 public void AppointmentPatientTab(ActionEvent event) throws IOException{

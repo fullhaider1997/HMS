@@ -53,7 +53,7 @@ public class Server extends AbstractServer{
    */
   public void handleMessageFromClient (Object msg, ConnectionToClient client)
   {
-        System.out.println("Message received: "  + " from " + client);
+        System.out.println("Message received: "  +msg.toString()+ " from " + client);
         Fpacket Fmsg = (Fpacket)msg;
         Fpacket reply;
         if(Fmsg.getTpeOfRequest().equals("register"))
@@ -71,7 +71,11 @@ public class Server extends AbstractServer{
             UserModule um= (UserModule)Fmsg.getArg1();
             reply= new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.VerifyLogin(um));
             try {
+
                 client.sendToClient(reply);
+                client.sendToClient(QueryRequest.VerifyLogin(um));
+                System.out.println("Request from the serve: login: " + QueryRequest.VerifyLogin(um));
+
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }

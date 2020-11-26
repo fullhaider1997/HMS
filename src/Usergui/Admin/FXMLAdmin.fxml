@@ -20,7 +20,7 @@
                         <Image url="@../../icons/logo.PNG" />
                      </image>
                   </ImageView>
-                  <Label contentDisplay="CENTER" prefHeight="17.0" prefWidth="387.0" text="Username: unknown" />
+                  <Label fx:id="StatusField" contentDisplay="CENTER" prefHeight="17.0" prefWidth="387.0" text="Username: unknown" />
                   <Button mnemonicParsing="false" onAction="#PatientTab" prefHeight="234.0" prefWidth="332.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="       Patients">
                      <graphic>
                         <ImageView fitHeight="58.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">

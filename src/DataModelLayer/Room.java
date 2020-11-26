@@ -24,11 +24,11 @@ public class Room implements Serializable{
     
     
     
-    public Room(String roomID, String type, int string,String StatusAvailability){
+    public Room(String roomID, String type, int num,String StatusAvailability){
        
         this.roomID = roomID;
         this.type = type;
-        this.numberOfBeds = string;
+        this.numberOfBeds = num;
         this.StatusAvailability = StatusAvailability;
         
     }
