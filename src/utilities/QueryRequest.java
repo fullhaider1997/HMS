@@ -671,5 +671,41 @@ public class QueryRequest {
         return verify;
     }
     
+    public static String ApproveAppointment(Appointment a){
+        String verify="";
+        try{
+            Connection con=ConnectionProvider.getCon();
+            System.out.println("Connected to Microsft SQL SERVER:Adding Appointment..");
+            
+            PreparedStatement myStmt = con.prepareStatement("Insert into Appointments"
+                    + "(patientID,practitionerID,roomID,appDate,appTime,status)"
+                    + " Values(?,?,?,?,?,?)");
+            myStmt.setInt(1, a.getPatientID());
+            myStmt.setInt(2, a.getPractitionerID());
+            myStmt.setString(3,a.getRoomID());
+            myStmt.setString(4, a.getappDate().toString());
+            myStmt.setString(5, a.getappTime().toString());
+            myStmt.setString(6,a.getStatus());
+        
+           
+            int count = myStmt.executeUpdate();
+            if(count>0)
+            {
+                verify="success";
+                System.out.println("Success:Added Appointment..");
+                con.close();
+            }
+            else
+                verify="fail";
+            con.close();
+        }
+        catch(SQLException ex) 
+        {
+            System.out.println("Error: Approving Appointment");
+            ex.printStackTrace();
+        }
+        return verify;
+    }
+    
     
 }
