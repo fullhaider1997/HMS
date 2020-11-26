@@ -19,7 +19,7 @@
                         <Image url="@../../icons/logo.PNG" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="24.0" prefWidth="285.0" text="Username: unknown" />
+                  <Label fx:id="StatusField" prefHeight="24.0" prefWidth="285.0" text="Username: unknown" />
                   <Button mnemonicParsing="false" onAction="#ViewPatientsMedicalHistorytTab" prefHeight="87.0" prefWidth="263.0" text="Patient medical history">
                      <graphic>
                         <ImageView fitHeight="62.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">

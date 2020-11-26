@@ -60,7 +60,7 @@ public class LoginSystemController implements Initializable,ChatIF {
     @FXML
     private Label StatusField;
     
-    private final String staffUsername = "medical";
+    private final String staffUsername = "doctor";
     private final String patientUsername = "patient";
     private final String adminUsername = "admin";
     private final String password = "123";
@@ -195,20 +195,41 @@ public class LoginSystemController implements Initializable,ChatIF {
        
  
        }else if(staffUsername.equals(client.getSessionType())){
+    	   
            
-        StackPane parentScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/doctor/FXMLMedical.fxml"));
+    	fxmlLoader = new FXMLLoader(); 
+        fxmlLoader.setLocation(LoginSystemController.class.getResource("/Usergui/doctor/FXMLMedical.fxml"));  
+        
+        
+        StackPane parentScene = fxmlLoader.load();
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        MedicalController doctorcontroller = fxmlLoader.getController();
+        
+        doctorcontroller.setUserName("Username: " +username);
         
         window.setScene(NextScene);
      
         window.show();
            
        } else if (patientUsername.equals(client.getSessionType())){
-           
-        StackPane parentScene = (StackPane)fxmlLoader.load(getClass().getResource("/Usergui/patient/FXMLPatient.fxml"));
-        Scene NextScene = new Scene(parentScene);
+    	   
+    	
+    	   
+    	   
+        fxmlLoader = new FXMLLoader(); 
+        fxmlLoader.setLocation(LoginSystemController.class.getResource("/Usergui/patient/FXMLPatient.fxml")); 
+        StackPane parentScene = fxmlLoader.load();
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+           
+
+        Scene NextScene = new Scene(parentScene);
+        
+        PatientController doctorcontroller = fxmlLoader.getController();
+        
+        doctorcontroller.setUserName("Username: " + username);
+       
         
         window.setScene(NextScene);
         window.show();

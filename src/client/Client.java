@@ -65,6 +65,8 @@ public class Client extends AbstractClient  {
           if(fp.getArg1().equals("patient"))
           {
         	
+        	  System.out.println("ClientSession is " + clientSession);
+        	  clientSession = fp.getArg1().toString();
             
           }
           else if(fp.getArg1().equals("admin")){
@@ -80,7 +82,9 @@ public class Client extends AbstractClient  {
           else if(fp.getArg1().equals("doctor")){
               //show show doctor UI
                //SessionType= "doctor";
-        	 
+        	  clientSession = fp.getArg1().toString();
+        	  System.out.println("ClientSession is " + clientSession);
+         	 
         	  
           }else if(fp.getArg1().equals("invalidlogin")){
         	
