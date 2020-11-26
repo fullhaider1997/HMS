@@ -8,6 +8,8 @@ package client;
 import common.ChatIF;
 import utilities.*;
 import java.io.IOException;
+
+import Controllers.LoginSystemController;
 import ocsf.client.AbstractClient;
 
 /**
@@ -23,6 +25,8 @@ public class Client extends AbstractClient  {
    * the display method in the client.
    */
   ChatIF clientUI;
+  String clientSession;
+ 
  
   //Constructors ****************************************************
   
@@ -51,21 +55,43 @@ public class Client extends AbstractClient  {
     //clientUI.display(msg.toString());
       
       Fpacket fp = (Fpacket)msg;
+      
+ 
+      
+     // clientUI.display("Message from server Message from server !" + fp.getArg1());
+      
       if(fp.getTpeOfRequest().equals("login"))
       {
           if(fp.getArg1().equals("patient"))
           {
-              //show patient UI
-              //SessionType= "patient";
+        	
+        	  System.out.println("ClientSession is " + clientSession);
+        	  clientSession = fp.getArg1().toString();
+            
           }
           else if(fp.getArg1().equals("admin")){
               //show admin UI
                //SessionType= "admin";
+        	 
+        	
+        	  clientSession = fp.getArg1().toString();
+        	  System.out.println("ClientSession is " + clientSession);
+        	 
+        	  
           }
           else if(fp.getArg1().equals("doctor")){
               //show show doctor UI
                //SessionType= "doctor";
-          }
+        	  clientSession = fp.getArg1().toString();
+        	  System.out.println("ClientSession is " + clientSession);
+         	 
+        	  
+          }else if(fp.getArg1().equals("invalidlogin")){
+        	
+        	  clientSession = "invalidlogin";
+        	  
+        	  }
+          
           //do the same for nurse
       }
       
@@ -76,9 +102,12 @@ public class Client extends AbstractClient  {
               //show something like "registration successful log in now"
           }
           else if(fp.getArg1().equals("invalidusername")){
+        	  
               //show something like "username already used try a different one"
+        	  
           }
           else if(fp.getArg1().equals("invalidID")){
+        	  
               //show something like "ID doesnt exist, contact Admin to get your ID"
           }
       }
@@ -121,10 +150,10 @@ public class Client extends AbstractClient  {
     System.exit(0);
   }
 
-    public void setName(String clientName) {
+    public String getSessionType() {
        
         
-        
+        return clientSession;
        
     }
 

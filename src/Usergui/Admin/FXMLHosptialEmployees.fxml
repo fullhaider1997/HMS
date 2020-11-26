@@ -20,9 +20,8 @@
       </VBox>
       <TableView fx:id="tabelView" layoutX="13.0" layoutY="100.0" prefHeight="402.0" prefWidth="412.0">
         <columns>
-          <TableColumn fx:id="firstName" prefWidth="128.80001521110535" text="First name" />
-          <TableColumn fx:id="department" prefWidth="156.8000030517578" text="Department" />
-            <TableColumn fx:id="jobTitle" prefWidth="135.2000732421875" text="Job Title" />
+          <TableColumn fx:id="firstName" prefWidth="213.60000038146973" text="First name" />
+          <TableColumn fx:id="Specialty" prefWidth="198.4000244140625" text="Specialty" />
         </columns>
       </TableView>
       <TextField fx:id="filterField" layoutX="97.0" layoutY="55.0" />
