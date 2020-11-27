@@ -83,6 +83,8 @@ public class LoginSystemController implements Initializable,ChatIF {
     	SessionType = string;
     }
     
+  
+    
     
     @Override
     public void display(String message) 
@@ -101,7 +103,7 @@ public class LoginSystemController implements Initializable,ChatIF {
         System.out.println("Hello world");
          fxmlLoader = new FXMLLoader();
      
-        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLRegistrationSystem.fxml"));
+        AnchorPane parentScene = (AnchorPane)FXMLLoader.load(getClass().getResource("/Usergui/FXMLRegistrationSystem.fxml"));
         
         
         Scene NextScene = new Scene(parentScene);
@@ -126,14 +128,11 @@ public class LoginSystemController implements Initializable,ChatIF {
         String password = passwordField.getText();
         
         
-      
-        
         //Check if user name is valid or not
         if(username == null || password == null) {
              System.out.println("user name is null");
         }
         
-         
                client = new Client(host, DEFAULT_PORT, this);
              // Create the client
              //Open connection    
@@ -185,7 +184,8 @@ public class LoginSystemController implements Initializable,ChatIF {
          
          AdminController admincontroller = fxmlLoader.getController();
          admincontroller.setUserName("Username: " +username);
-        // admincontroller.setClient(client);
+          admincontroller.setClient(client);
+          
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         

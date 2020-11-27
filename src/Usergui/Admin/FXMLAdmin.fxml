@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
    <children>
@@ -21,34 +22,43 @@
                      </image>
                   </ImageView>
                   <Label fx:id="StatusField" contentDisplay="CENTER" prefHeight="17.0" prefWidth="387.0" text="Username: unknown" />
-                  <Button mnemonicParsing="false" onAction="#PatientTab" prefHeight="234.0" prefWidth="332.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="       Patients">
+                  <Button mnemonicParsing="false" onAction="#PatientTab" prefHeight="66.0" prefWidth="271.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="       Patients">
                      <graphic>
-                        <ImageView fitHeight="58.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../icons/medicalhistory.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#EmployeeTab" prefHeight="186.0" prefWidth="327.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Employee">
+                  <Button mnemonicParsing="false" onAction="#EmployeeTab" prefHeight="65.0" prefWidth="271.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Employee">
                      <graphic>
-                        <ImageView fitHeight="54.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../icons/addEmployee.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#ExportDataTab" prefHeight="219.0" prefWidth="483.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Export data">
+                  <Button mnemonicParsing="false" onAction="#ExportDataTab" prefHeight="72.0" prefWidth="271.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Export data">
                      <graphic>
-                        <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="33.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../icons/data.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#HosptialArragmentTab" prefHeight="220.0" prefWidth="370.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Arranging Hosptial">
+                  <Button mnemonicParsing="false" onAction="#HosptialArragmentTab" prefHeight="73.0" prefWidth="271.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Arranging Hosptial">
                      <graphic>
                         <ImageView fitHeight="48.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -56,24 +66,38 @@
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#AdminGuideTab" prefHeight="194.0" prefWidth="393.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Admin Guide">
+                  <Button mnemonicParsing="false" onAction="#AdminGuideTab" prefHeight="68.0" prefWidth="271.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Admin Guide">
                      <graphic>
-                        <ImageView fitHeight="52.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="41.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../icons/guide.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#ManageAppointmentsTab" prefHeight="216.0" prefWidth="514.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Manage Appointments">
+                  <Button mnemonicParsing="false" onAction="#ManageAppointmentsTab" prefHeight="70.0" prefWidth="271.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Manage Appointments">
                      <graphic>
-                        <ImageView fitHeight="57.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="43.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../icons/appointment.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logOut" prefHeight="57.0" prefWidth="271.0" style="-fx-background-color: #87CEFA; -fx-border-color: #000000;" text="Logout">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
                   </Button>
                </children>
             </VBox>

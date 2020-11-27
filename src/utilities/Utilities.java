@@ -49,5 +49,26 @@ public class Utilities {
         
     }
     
+    public int checkForNull(Object componet) {
+    	
+    	    if(componet == null) {
+    	    	return 0;
+    	    }else {
+    	    	return 1;
+    	    }
+    	
+    }
+    
+    public static boolean isNumeric(String str) { 
+    	  try {  
+    	    Double.parseDouble(str);  
+    	    return true;
+    	  } catch(NumberFormatException e){  
+    	    return false;  
+    	  }  
+    	}
+
+	
+    
     
 }

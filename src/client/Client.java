@@ -58,7 +58,7 @@ public class Client extends AbstractClient  {
       
  
       
-     // clientUI.display("Message from server Message from server !" + fp.getArg1());
+     clientUI.display("Message from server Message from server !" + fp.getArg1());
       
       if(fp.getTpeOfRequest().equals("login"))
       {
@@ -100,15 +100,20 @@ public class Client extends AbstractClient  {
           if(fp.getArg1().equals("success"))
           {
               //show something like "registration successful log in now"
+        	  System.out.println("Registration was successful");
+        	  
           }
           else if(fp.getArg1().equals("invalidusername")){
         	  
               //show something like "username already used try a different one"
         	  
+        	  System.out.println("Registration was invalidusername");
           }
           else if(fp.getArg1().equals("invalidID")){
         	  
               //show something like "ID doesnt exist, contact Admin to get your ID"
+        	  
+        	  System.out.println("Registration was invalidId");
           }
       }
     
@@ -156,7 +161,7 @@ public class Client extends AbstractClient  {
         return clientSession;
        
     }
-
+    
     
 }
 

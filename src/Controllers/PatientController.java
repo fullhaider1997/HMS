@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import utilities.Utilities;
 
@@ -38,6 +39,23 @@ public class PatientController implements Initializable,ChatIF  {
 	 String host = "";
 	 Utilities utility = new Utilities();
 
+	  public void logOut(ActionEvent event) throws IOException {
+		    
+	    	
+	    	FXMLLoader fxmlLoader = new FXMLLoader();
+	        
+	        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLLoginSystem.fxml"));
+	           
+	        Scene NextScene = new Scene(parentScene);
+	             
+			Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+	        
+	        window.setScene(NextScene);
+	        window.show();
+	    	
+	    	
+	    	
+	    }
     public void setUserName(String username) throws IOException {
         
         
@@ -109,6 +127,7 @@ public class PatientController implements Initializable,ChatIF  {
         } catch (IOException ex) {
              Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
        }
+        
     	
     	
     	

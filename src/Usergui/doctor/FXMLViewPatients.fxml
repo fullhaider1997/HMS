@@ -12,16 +12,16 @@
    <children>
       <Label layoutX="49.0" layoutY="43.0" prefHeight="30.0" prefWidth="85.0" text="Search box" />
       <TextField layoutX="134.0" layoutY="46.0" />
-      <VBox layoutX="450.0" layoutY="127.0" prefHeight="258.0" prefWidth="128.0">
+      <VBox layoutX="450.0" layoutY="127.0" prefHeight="258.0" prefWidth="115.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="69.0" prefWidth="130.0" text="Modify Condition" />
-            <Button mnemonicParsing="false" prefHeight="76.0" prefWidth="128.0" text="View medical data" />
+            <Button mnemonicParsing="false" prefHeight="64.0" prefWidth="115.0" text="Modify Condition" />
+            <Button mnemonicParsing="false" prefHeight="63.0" prefWidth="118.0" text="View medical data" />
          </children>
       </VBox>
-      <TableView layoutX="50.0" layoutY="102.0" prefHeight="282.0" prefWidth="323.0">
+      <TableView layoutX="19.0" layoutY="102.0" prefHeight="307.0" prefWidth="364.0">
         <columns>
-          <TableColumn prefWidth="105.0" text="Patient ID" />
-          <TableColumn prefWidth="217.0" text="Patient Name" />
+          <TableColumn prefWidth="188.0" text="Patient ID" />
+          <TableColumn prefWidth="175.0" text="Patient Name" />
         </columns>
       </TableView>
    </children>

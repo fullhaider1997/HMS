@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Controllers.doctor.ViewAppointments;
 import client.Client;
 import common.ChatIF;
 import javafx.event.ActionEvent;
@@ -21,6 +22,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import utilities.Utilities;
 
@@ -49,7 +52,27 @@ public class MedicalController implements Initializable, ChatIF {
     public void setClient(Client client) throws IOException {
 
         MedicalController.doctorClient = client;
-
+        
+     
+   
+    }
+    public void logout(ActionEvent event) throws IOException{
+    	
+    	
+         FXMLLoader fxmlLoader = new FXMLLoader();
+        
+        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLLoginSystem.fxml"));
+        
+        
+        Scene NextScene = new Scene(parentScene);
+        
+      
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(NextScene);
+        window.show();
+    	
+    	
     }
     
     
@@ -103,15 +126,7 @@ public class MedicalController implements Initializable, ChatIF {
     public void initialize(URL url, ResourceBundle rb) {
       
 
-        System.out.println("initalize doctor controller");
-        
-         try {
-              doctorClient = new Client(host, DEFAULT_PORT, this);
-      
-              doctorClient.openConnection();
-         } catch (IOException ex) {
-              Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
 	
 

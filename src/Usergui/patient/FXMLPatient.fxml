@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PatientController">
    <children>
@@ -23,7 +24,7 @@
                   <Label fx:id="StatusField" contentDisplay="CENTER" prefHeight="38.0" prefWidth="211.0" text="Username: unknown" />
                   <Button mnemonicParsing="false" onAction="#AppointmentPatientTab" prefHeight="89.0" prefWidth="211.0" style="-fx-background-color: #87CEFA; -fx-border-color: #000000;" text="      Appointment">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../icons/appointment.png" />
                            </image>
@@ -47,12 +48,17 @@
                      </graphic></Button>
                   <Button mnemonicParsing="false" onAction="#PatientGuideTab" prefHeight="87.0" prefWidth="211.0" style="-fx-background-color: #87CEFA; -fx-border-color: #000000;" text="Patient Guide">
                      <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="38.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../icons/guide.png" />
                            </image>
                         </ImageView>
                      </graphic>
+                  </Button>
+                  <Button fx:id="logOut" mnemonicParsing="false" prefHeight="71.0" prefWidth="211.0" style="-fx-background-color: #87CEFA; -fx-border-color: #000000;" text="Button">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
                   </Button>
                </children>
             </VBox>

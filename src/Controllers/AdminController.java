@@ -12,8 +12,10 @@ import common.ChatIF;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
+import java.util.EventObject;
 import java.util.HashSet;
 import java.util.Map;
+import javafx.event.ActionEvent;
 import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -52,7 +54,23 @@ public class AdminController implements Initializable,ChatIF {
     private Label StatusField;
     Utilities utility = new Utilities();
     
+  public void logOut(ActionEvent event) throws IOException {
     
+    	
+    	FXMLLoader fxmlLoader = new FXMLLoader();
+        
+        AnchorPane parentScene = (AnchorPane)fxmlLoader.load(getClass().getResource("/Usergui/FXMLLoginSystem.fxml"));
+           
+        Scene NextScene = new Scene(parentScene);
+             
+		Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(NextScene);
+        window.show();
+    	
+    	
+    	
+    }
       public void setUserName(String username) throws IOException {
                     
           this.name = username;
