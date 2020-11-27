@@ -26,11 +26,11 @@ public class Utilities {
     public void EmbeddFXMLIntoFXML(ActionEvent event, String embeddedFXML, String backgroundFXML) throws IOException{
         
        
-        AnchorPane HosptialEmployeeForm = (AnchorPane)FXMLLoader.load(getClass().getResource(embeddedFXML));
+        AnchorPane InjectedScene = (AnchorPane)FXMLLoader.load(getClass().getResource(embeddedFXML));
        
-        StackPane AdminScene = (StackPane)FXMLLoader.load(getClass().getResource(backgroundFXML));
+        StackPane Scene = (StackPane)FXMLLoader.load(getClass().getResource(backgroundFXML));
         
-        BorderPane borderpane =(BorderPane)  AdminScene.lookup("#BorderPane");
+        BorderPane borderpane =(BorderPane)  Scene.lookup("#BorderPane");
         
          if(borderpane!=null){
              System.out.println("border pane exist");
@@ -38,8 +38,8 @@ public class Utilities {
              System.out.println("border doesn't exist");
          }
          
-         borderpane.setCenter(HosptialEmployeeForm );
-         Scene NextScene = new Scene(AdminScene);
+         borderpane.setCenter(InjectedScene );
+         Scene NextScene = new Scene(Scene);
          Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
          window.setScene(NextScene);
          window.show();

@@ -123,7 +123,7 @@ public class QueryRequest {
             myStmt.setString(1, user.getUsername());
             myStmt.setString(2, user.getPassword());
             ResultSet res = myStmt.executeQuery();
-            if(res.getRow()!=1)
+            if(res.next())
             {   
                 String id= res.getString("ID");
                 switch (id.charAt(0)) {
@@ -229,36 +229,48 @@ public class QueryRequest {
     }
     public static String AddEmployee(Employee e){
         String verify="";
+        PreparedStatement myStmt;
+        int count;
         try{
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Adding Employee..");
             
-            PreparedStatement myStmt = con.prepareStatement("Insert into ? Values(?,?,?,?,?,?)");
 
             if(e.getJobTitle().equals("doctor")){
-                myStmt.setString(1, "Practitioners");
-                myStmt.setString(7, e.getSpecialty());
+            	myStmt = con.prepareStatement("Insert into Practitioners Values(?,?,?,?,?,?)");
+            	myStmt.setString(1, e.getFirstName());
+                myStmt.setString(2, e.getLastName());
+                myStmt.setString(3, e.getDOB());
+                myStmt.setString(4, e.getAddress());
+                myStmt.setString(5, e.getPhoneNumber());
+                myStmt.setString(6, e.getSpecialty());
+                count = myStmt.executeUpdate();
+                if(count>0)
+                {
+                    verify="success";
+                    con.close();
+                }
+                else
+                    verify="fail";
             }
             
             else if(e.getJobTitle().equals("nurse")){
-                myStmt.setString(1, "Nurses");
-                myStmt.setString(7, null);
+            	myStmt = con.prepareStatement("Insert into Nurses Values(?,?,?,?,?)");
+            	myStmt.setString(1, e.getFirstName());
+                myStmt.setString(2, e.getLastName());
+                myStmt.setString(3, e.getDOB());
+                myStmt.setString(4, e.getAddress());
+                myStmt.setString(5, e.getPhoneNumber());
+                count = myStmt.executeUpdate();
+                if(count>0)
+                {
+                    verify="success";
+                    con.close();
+                }
+                else
+                    verify="fail";
             }
-            
-            myStmt.setString(2, e.getFirstName());
-            myStmt.setString(3, e.getLastName());
-            myStmt.setString(4, e.getDOB());
-            myStmt.setString(5, e.getAddress());
-            myStmt.setString(6, e.getPhoneNumber());
-            
-            int count = myStmt.executeUpdate();
-            if(count>0)
-            {
-                verify="success";
-                con.close();
-            }
-            else
-                verify="fail";
+                    
             con.close();
         }
         catch(SQLException ex) 
@@ -291,6 +303,17 @@ public class QueryRequest {
             else if(e.getJobTitle().toString().equals("nurse")){
                  myStmt = con.prepareStatement("Update Nurses Set firstname=?"
                     + "lastname=?, dob=?, addr=?,phonenumber=? where nurseID=?");
+                myStmt.setString(1, e.getFirstName());
+                myStmt.setString(2, e.getLastName());
+                myStmt.setString(3, e.getDOB());
+                myStmt.setString(4, e.getAddress());
+                myStmt.setString(5, e.getPhoneNumber());
+                myStmt.setInt(6,e.getID());
+                count = myStmt.executeUpdate();
+            }
+             else if(e.getJobTitle().toString().equals("admin")){
+                 myStmt = con.prepareStatement("Update Admins Set firstname=?"
+                    + "lastname=?, dob=?, addr=?,phonenumber=? where adminID=?");
                 myStmt.setString(1, e.getFirstName());
                 myStmt.setString(2, e.getLastName());
                 myStmt.setString(3, e.getDOB());
@@ -382,7 +405,6 @@ public class QueryRequest {
         }
         return verify;
     }
-     
     public static String AddBed(Bed b){
          String verify="";
         try{
@@ -497,8 +519,8 @@ public class QueryRequest {
          return patients;
     }
     
-     public static ObservableList<Employee> GetAllDoctors(){
-    	 ObservableList<Employee> doctors= FXCollections.observableArrayList();
+    public static ObservableList<Employee> GetAllDoctors(){
+   	 ObservableList<Employee> doctors= FXCollections.observableArrayList();
          try{
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Getting all doctors..");
@@ -508,7 +530,7 @@ public class QueryRequest {
             ResultSet res = myStmt.executeQuery();
             while(res.next())
             {
-                Employee e = new Employee(res.getInt(""), res.getString("firstname"),res.getString("lastname"),
+                Employee e = new Employee(res.getInt("practitionerID"), res.getString("firstname"),res.getString("lastname"),
                         LocalDate.parse(res.getString("dob")),res.getString("addr"),
                         res.getString("phonenumber"),"doctor",res.getString("specialty"));
                 doctors.add(e);
@@ -533,7 +555,7 @@ public class QueryRequest {
             ResultSet res = myStmt.executeQuery();
             while(res.next())
             {
-                Employee e = new Employee(res.getInt(""), res.getString("firstname"),res.getString("lastname"),
+                Employee e = new Employee(res.getInt("nurseID"), res.getString("firstname"),res.getString("lastname"),
                         LocalDate.parse(res.getString("dob")),res.getString("addr"),
                         res.getString("phonenumber"),"nurse",res.getString("specialty"));
                 nurses.add(e);
@@ -558,7 +580,7 @@ public class QueryRequest {
             ResultSet res = myStmt.executeQuery();
             while(res.next())
             {
-                Employee e = new Employee(res.getInt(""), res.getString("firstname"),res.getString("lastname"),
+                Employee e = new Employee(res.getInt("adminID"), res.getString("firstname"),res.getString("lastname"),
                         LocalDate.parse(res.getString("dob")),res.getString("addr"),
                         res.getString("phonenumber"),"admin",res.getString("specialty"));
                 admins.add(e);
@@ -566,7 +588,7 @@ public class QueryRequest {
         }
          catch(SQLException ex) 
         {
-            System.out.println("Error: Getting all patients..");
+            System.out.println("Error: Getting all admins..");
             ex.printStackTrace();
         }
          return admins;
@@ -577,7 +599,7 @@ public class QueryRequest {
          try{
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Getting all users..");
-            PreparedStatement myStmt= con.prepareStatement("Select * from Users");
+            PreparedStatement myStmt= con.prepareStatement("");
             
             
             ResultSet res = myStmt.executeQuery();
@@ -593,6 +615,36 @@ public class QueryRequest {
             ex.printStackTrace();
         }
          return users;
+    }
+    
+    public static ObservableList<Employee> GetAllEmployees(){
+        ObservableList<Employee> employees= FXCollections.observableArrayList();
+         try{
+            Connection con=ConnectionProvider.getCon();
+            System.out.println("Connected to Microsft SQL SERVER:Getting all employees..");
+            PreparedStatement myStmt= con.prepareStatement("select adminID as 'ID', firstname, lastname, dob, addr, phonenumber, 'admin' as 'jobtitle'  from Admins\n" +
+                "union \n" +
+                "select practitionerID as 'ID', firstname,lastname,dob, addr, phonenumber, 'doctor' as 'jobtitle' from Practitioners\n" +
+                "union \n" +
+                "select nurseID as 'ID', firstname,lastname, dob, addr, phonenumber, 'nurse' as 'jobtitle' from Nurses");
+            
+            
+            ResultSet res = myStmt.executeQuery();
+            while(res.next())
+            {
+                Employee e = new Employee(res.getInt("ID"), res.getString("firstname"),res.getString("lastname"),
+                        LocalDate.parse(res.getString("dob")),res.getString("addr"),
+                        res.getString("phonenumber"),res.getString("jobtitle"));
+                
+                employees.add(e);
+            }
+        }
+         catch(SQLException ex) 
+        {
+            System.out.println("Error: Getting all users..");
+            ex.printStackTrace();
+        }
+         return employees;
     }
     
     public static String RequestAppointment(Appointment a){

@@ -27,7 +27,12 @@ public class Fpacket implements Serializable{
         this.arg1 = arg1;
     }
     
-   public String getTpeOfRequest(){
+   public Fpacket(String string) {
+	// TODO Auto-generated constructor stub
+	   this.typeOfRequest = string;
+}
+
+public String getTpeOfRequest(){
        return typeOfRequest;
    }
    public Object getArg1(){
