@@ -28,7 +28,7 @@ public class Server extends AbstractServer{
   //Constructors ****************************************************
   
   /**
-   * Constructs an instance of the echo server.
+   * Constructs an instance of the  server.
    *
    * @param port The port number to connect on.
    */

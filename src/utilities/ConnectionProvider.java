@@ -12,6 +12,8 @@ import java.util.logging.Logger;
  *
  * @author maiken
  */
+
+///Provides the connection do database for Query Requests
 public class ConnectionProvider {
     public static Connection getCon()
     {

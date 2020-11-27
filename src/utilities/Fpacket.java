@@ -12,6 +12,8 @@ import java.util.HashMap;
  *
  * @author Haider
  */
+
+///Communication Protocol between Clients and Server
 public class Fpacket implements Serializable{
     
     String typeOfRequest;

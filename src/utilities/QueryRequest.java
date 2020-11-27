@@ -20,7 +20,15 @@ import java.time.*;
  *
  * @author maiken
  */
+
+/**
+ *
+ * All types of queries that Clients may request
+ */
 public class QueryRequest {
+    
+    ///returns string of whether Registration is successful or not
+    ///accepts a Usermodule containing username password and ID
     public static String RegisterUser(UserModule ur)
     {
         String verify="";
@@ -111,6 +119,9 @@ public class QueryRequest {
         return verify;
     }
     
+    
+    ///Returns string whethere Login is successful or not
+    ///Accepts Usermodule
     public static String VerifyLogin(UserModule user)
     {
         String verify="";
