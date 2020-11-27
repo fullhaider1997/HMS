@@ -16,11 +16,7 @@ import java.io.Serializable;
 
 public class Employee implements Serializable{
     
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private int ID;
+    private int ID;
     private String firstName;
     private String lastName;
     private LocalDate dob;
@@ -41,6 +37,17 @@ public class Employee implements Serializable{
         this.jobtitle = jobtitle;
         this.specialty = specialty;
     }
+    public Employee(int ID, String firstName, String lastName , LocalDate dob, String address, String phoneNumber, String jobtitle){
+        
+        this.ID = ID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.dob = dob;
+        this.address = address;
+        this.phoneNumber =phoneNumber;
+        this.jobtitle = jobtitle;
+        
+    }
     
     public Employee(String firstName, String lastName , LocalDate dob, String address, String phoneNumber, String jobtitle, String specialty){
         
@@ -52,14 +59,7 @@ public class Employee implements Serializable{
         this.jobtitle = jobtitle;
         this.specialty = specialty;
     }
-    
-    
-    public Employee(String string, String string2, String string3) {
-		// TODO Auto-generated constructor stub
-    	this.firstName = string;
-    	this.address = string2;
-    	this.jobtitle = string3;
-	}
+      
 
 	public void setFirstName(String firstName){
         this.firstName=firstName;
