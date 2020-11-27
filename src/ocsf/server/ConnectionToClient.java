@@ -125,6 +125,7 @@ public class ConnectionToClient extends Thread{
 			throw new SocketException("socket does not exist");
 
 		output.writeObject(msg);
+		System.out.println("Sent to Client Successfully");
 	}
 
 	/**
