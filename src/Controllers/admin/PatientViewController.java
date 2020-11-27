@@ -6,9 +6,11 @@
 package Controllers.admin;
 
 import DataModelLayer.Patient;
-import utilities.QueryRequest;
 import DataModelLayer.Room;
+import DataModelLayer.UserModule;
 import client.Client;
+import common.ChatIF;
+
 import java.io.IOException;
 import java.net.Socket;
 import java.net.URL;
@@ -46,35 +48,37 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import utilities.Fpacket;
+import utilities.QueryRequest;
 import utilities.Utilities;
+import static Controllers.LoginSystemController.DEFAULT_PORT;
 /**
  *
  * @author Haider
  */
-public class PatientViewController implements Initializable{
+public class PatientViewController implements Initializable, ChatIF{
 
     
         @FXML
     private Label label;
     @FXML private TextField filterFieldPatient;
     @FXML private TableView<Patient> tableViewPatients; 
- 
-     //private final ObservableList<Patient> patientDataList = FXCollections.observableArrayList();
-    private final ObservableList<Patient> patientDataList = QueryRequest.GetAllPatients();
-    private static Client adminClient;
-    static String name;
+    //private final String request = "allpatient";
     
-    public void setClient(Client client) throws IOException {
-    	
-    	  PatientViewController.name = "haider";
-          PatientViewController.adminClient = client; 
-         
-          adminClient.sendToServer("We are still connected");
-          
-      }
-     
-     
-     
+    Fpacket fpacket;
+    String host = "";
+    static Client client = null;
+    
+    AdminController admincontroller;
+   
+ 
+   // private final ObservableList<Patient> patientDataList = FXCollections.observableArrayList();
+    
+    
+    
+    
+   
+
      
      
      
@@ -82,6 +86,61 @@ public class PatientViewController implements Initializable{
 	@Override
     public void initialize(URL location, ResourceBundle resources) {
        
+  /* try {
+		client = new Client(host, DEFAULT_PORT, this);
+	} catch (IOException e3) {
+		// TODO Auto-generated catch block
+		e3.printStackTrace();
+	}
+       // Create the client
+       //Open connection    
+         try {
+			client.openConnection();
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+      
+     if(client.isConnected()== true){
+         
+         System.out.println("Client is connected");
+         try {
+			client.sendToServer(new Fpacket("allpatients"));
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+   	  	 
+         
+         try {
+			AdminController.setClient(client);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		   
+       
+     }else
+       {
+         
+         System.out.println("Client failed to connect !");
+
+       }
+     
+     while(client.getSessionType()==null) {
+  	   
+   	  System.out.println("Waiting for server reply....");
+      }
+     
+    	
+     try {
+		AdminController.getClient().sendToServer(new Fpacket("allpatients"));
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}*/
+     ObservableList<Patient> patientDataList = QueryRequest.GetAllPatients();
+		
     	TableColumn <Patient, Integer> ID = new TableColumn<Patient, Integer>("ID");
         TableColumn<Patient, String> firstname = new TableColumn<Patient, String>("FirstName");        
         TableColumn<Patient, String> lastname = new TableColumn<Patient, String>("LastName");
@@ -89,7 +148,7 @@ public class PatientViewController implements Initializable{
         TableColumn<Patient, String> address = new TableColumn<Patient, String>("Address");
         TableColumn<Patient, String> phonenumber = new TableColumn<Patient, String>("Phone Number");
         TableColumn<Patient, String> condition = new TableColumn<Patient, String>("Condition");
-        
+
         ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
         firstname.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastname.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -97,15 +156,15 @@ public class PatientViewController implements Initializable{
         dob.setCellValueFactory(new PropertyValueFactory<>("DOB"));
         address.setCellValueFactory(new PropertyValueFactory<>("Address"));
         phonenumber.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
-        
+
         tableViewPatients.getColumns().addAll(ID,firstname, lastname, dob, address, phonenumber, condition);
-  
-        
+
+
         FilteredList<Patient> filterdData = new FilteredList<>(patientDataList, b-> true);
 
          filterFieldPatient.textProperty().addListener((observable,oldValue,newValue)->{
             filterdData.setPredicate(Patient -> {
-                
+
                  if(newValue== null || newValue.isEmpty()) {
                      return true;
                  }
@@ -115,9 +174,9 @@ public class PatientViewController implements Initializable{
                  if(newValue == null || newValue.isEmpty()){
                      return true;
                  }
-                
+
                  String lowerCaseFilter = newValue.toLowerCase();
-                 
+
                  if(Integer.toString(Patient.getID()).toLowerCase().contains(lowerCaseFilter) ){
                      return true;
                  }
@@ -143,23 +202,39 @@ public class PatientViewController implements Initializable{
                  }
                  else 
                      return false;
-             
-                
+
+
             });
-            
+
         });
-        
-     
-    
-    
+
+
+
+
        SortedList<Patient> sortedData = new SortedList<Patient>(filterdData);
-      
+
        sortedData.comparatorProperty().bind(tableViewPatients.comparatorProperty());
-       
+
        tableViewPatients.setItems(sortedData);
-        
+
+
         
         
     }
+
+
+
+    public static void setClient(Client client) throws IOException {
+
+        PatientViewController.client = client;
+
+    }
+
+
+	@Override
+	public void display(String message) {
+		// TODO Auto-generated method stub
+		System.out.println("> " + message);
+	}
     
 }

@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.Initializable;
 import DataModelLayer.Employee;
+import DataModelLayer.Patient;
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +31,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import utilities.QueryRequest;
 import utilities.Utilities;
 
 public class HosptialEmployeesController implements Initializable {
@@ -36,13 +40,14 @@ public class HosptialEmployeesController implements Initializable {
     private Label label;
     @FXML private TextField filterField;
     @FXML private TableView<Employee> tabelView; 
-    @FXML private TableColumn <Employee, String> firstName;
-    @FXML private TableColumn <Employee, String> address;
-    @FXML private TableColumn <Employee, String> jobTitle;
+    
+    
+   
+   
     
     
     
-    private final ObservableList<Employee> employeeDataList = FXCollections.observableArrayList();
+    private final ObservableList<Employee> employeeDataList = QueryRequest.GetAllEmployees();
     
     public void EmployeeTab(ActionEvent event) throws IOException{
         
@@ -58,21 +63,30 @@ public class HosptialEmployeesController implements Initializable {
     
     
    
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public void initialize(URL url, ResourceBundle rb) {
        
-        firstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-        address.setCellValueFactory(new PropertyValueFactory<>("address"));
-        jobTitle.setCellValueFactory(new PropertyValueFactory<>("JobTitle"));
         
-        LocalDate date = LocalDate.now();
-        
-        Employee emp1 = new Employee("Haider", "Michigan","Neurology");
-        Employee emp2 = new Employee("Joe", "Toronto","Internal surgery");
-        Employee emp3 = new Employee("Alaa","Saudi Arabia","radiology");
-        Employee emp4 = new Employee("Biden", "Bahamas","Administrative");
-        
-        employeeDataList.addAll(emp1,emp2,emp3,emp4);
+        TableColumn <Employee, Integer> ID = new TableColumn<Employee, Integer>("ID");
+        TableColumn<Employee, String> firstname = new TableColumn<Employee, String>("FirstName");        
+        TableColumn<Employee, String> lastname = new TableColumn<Employee, String>("LastName");
+        TableColumn<Employee, String> dob = new TableColumn<Employee, String>("Date of Birth");
+        TableColumn<Employee, String> address = new TableColumn<Employee, String>("Address");
+        TableColumn<Employee, String> phonenumber = new TableColumn<Employee, String>("Phone Number");
+        TableColumn<Employee, String> jobtitle = new TableColumn<Employee, String>("Job Title");
+       
+        ID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        firstname.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
+        lastname.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+        jobtitle.setCellValueFactory(new PropertyValueFactory<>("JobTitle"));
+        dob.setCellValueFactory(new PropertyValueFactory<>("DOB"));
+        address.setCellValueFactory(new PropertyValueFactory<>("Address"));
+        phonenumber.setCellValueFactory(new PropertyValueFactory<>("PhoneNumber"));
+     
+
+        tabelView.getColumns().addAll(ID,firstname, lastname, dob, address, phonenumber, jobtitle);
+
         
         FilteredList<Employee> filterdData = new FilteredList<>(employeeDataList, b-> true);
         
@@ -92,13 +106,25 @@ public class HosptialEmployeesController implements Initializable {
                  if(employee.getFirstName().toLowerCase().contains(lowerCaseFilter) ){
                      return true;
                  }
-                 else if (employee.getAddress().toLowerCase().contains(lowerCaseFilter))
-                 {
+                 else if(employee.getLastName().toLowerCase().contains(lowerCaseFilter) ){
                      return true;
                  }
-                 
-                 else if(employee.getJobTitle().toLowerCase().contains(lowerCaseFilter)){
+                 else if(employee.getJobTitle().toLowerCase().contains(lowerCaseFilter) ){
                      return true;
+                 }
+                 else if(employee.getDOB().toLowerCase().contains(lowerCaseFilter) ){
+                     return true;
+                 }
+                 else if(employee.getAddress().toLowerCase().contains(lowerCaseFilter) ){
+                     return true;
+                 }
+                 else if(employee.getPhoneNumber().toLowerCase().contains(lowerCaseFilter) ){
+                     return true;
+                 }
+                 else if (Integer.toString(employee.getID()).toLowerCase().contains(lowerCaseFilter))
+                 {
+                     return true;
+                 
                  }
                  else 
                      return false;
