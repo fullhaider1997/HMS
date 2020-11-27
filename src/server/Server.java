@@ -37,12 +37,6 @@ public class Server extends AbstractServer{
     super(port);
   }
   
-  public void checkUserName(){
-      
-  }
-  
-
-  
   //Instance methods ************************************************
   
   /**
@@ -206,12 +200,63 @@ public class Server extends AbstractServer{
         else if(Fmsg.getTpeOfRequest().equals("requestappointment"))
         {
             Appointment a= (Appointment)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(), QueryRequest.RequestAppointment(a));
             try {
-                client.sendToClient(QueryRequest.RequestAppointment(a));
+                client.sendToClient(reply);
             } catch (IOException ex) {
                 Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        else if(Fmsg.getTpeOfRequest().equals("modifyappointment"))
+        {
+             Appointment a= (Appointment)Fmsg.getArg1();
+            reply= new Fpacket(Fmsg.getTpeOfRequest(), QueryRequest.ModifyAppointment(a));
+            try {
+                client.sendToClient(reply);
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("adddoctoravailability"))
+        {
+            DoctorAvailability d= (DoctorAvailability)Fmsg.getArg1();
+            reply = new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.AddDoctorAvailability(d));
+            try {
+                client.sendToClient(reply);
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("getdoctoravailabilities"))
+        {    
+            reply = new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.GetDoctorAvailabilities());
+            try {
+                client.sendToClient(reply);
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(Fmsg.getTpeOfRequest().equals("addInpatientadmission"))
+        {    
+            InPatientAdmission ia= (InPatientAdmission)Fmsg.getArg1();
+            reply = new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.AddInPatientAdmission(ia));
+            try {
+                client.sendToClient(reply);
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+         else if(Fmsg.getTpeOfRequest().equals("getalladmissions"))
+        {    
+            reply = new Fpacket(Fmsg.getTpeOfRequest(),QueryRequest.GetAllAdmissions());
+            try {
+                client.sendToClient(reply);
+            } catch (IOException ex) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
   }
 
   

@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.*;
-import java.time.LocalDate;
+import java.time.*;
 /**
  *
  * @author maiken
@@ -28,10 +28,10 @@ public class QueryRequest {
         try{
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Registering user..");
-            PreparedStatement myStmt= con.prepareStatement("Select adminID from Admins where adminID= ?"
-                    + "union select patientID from Patients where patientID =?"
-                    + "union select practitionerID from Practitioners where practitionerID=?"
-                    + "union select nurseID from Nurses where nurseID=?");
+            PreparedStatement myStmt= con.prepareStatement("Select adminID from Admins where adminID= ? union\n"
+                    + " select patientID from Patients where patientID =? union \n"
+                    + " select practitionerID from Practitioners where practitionerID=? union\n"
+                    + " select nurseID from Nurses where nurseID=?");
             myStmt.setInt(1, ur.getID());
             myStmt.setInt(2, ur.getID());
             myStmt.setInt(3, ur.getID());
@@ -45,7 +45,7 @@ public class QueryRequest {
         }
          catch(SQLException ex) 
         {
-            System.out.println("Error: User registration..");
+            System.out.println("Error: User registration(1)..");
             ex.printStackTrace();
             return "error";
         }
@@ -75,7 +75,7 @@ public class QueryRequest {
         }
          catch(SQLException ex) 
         {
-            System.out.println("Error: User registration..");
+            System.out.println("Error: User registration(2)..");
             ex.printStackTrace();
             return "error";
         }
@@ -103,7 +103,7 @@ public class QueryRequest {
         }
          catch(SQLException ex) 
         {
-            System.out.println("Error: User registration..");
+            System.out.println("Error: User registration(3)..");
             ex.printStackTrace();
             return "error";
         }
@@ -200,8 +200,8 @@ public class QueryRequest {
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Modifying Patient..");
             
-            PreparedStatement myStmt = con.prepareStatement("Update Patients Set firstname=?"
-                    + "lastname=?, dob=?, addr=?,phonenumber=?, conditions=? where patientID=?");
+            PreparedStatement myStmt = con.prepareStatement("Update Patients Set firstname=? "
+                    + " lastname=?, dob=?, addr=?,phonenumber=?, conditions=? where patientID=?");
             myStmt.setString(1, p.getFirstName());
             myStmt.setString(2, p.getLastName());
             myStmt.setString(3, p.getDOB());
@@ -507,6 +507,7 @@ public class QueryRequest {
          return patients;
     }
     
+    //create a list of
     public static ObservableList<Employee> GetAllDoctors(){
    	 ObservableList<Employee> doctors= FXCollections.observableArrayList();
          try{
@@ -605,8 +606,8 @@ public class QueryRequest {
          return users;
     }
     
-    public static ArrayList<Employee> GetAllEmployees(){
-        ArrayList<Employee> employees= new ArrayList<Employee>();
+    public static ObservableList<Employee> GetAllEmployees(){
+        ObservableList<Employee> employees= FXCollections.observableArrayList();
          try{
             Connection con=ConnectionProvider.getCon();
             System.out.println("Connected to Microsft SQL SERVER:Getting all users..");
@@ -620,9 +621,10 @@ public class QueryRequest {
             ResultSet res = myStmt.executeQuery();
             while(res.next())
             {
+                
                 Employee e = new Employee(res.getInt("ID"), res.getString("firstname"),res.getString("lastname"),
                         LocalDate.parse(res.getString("dob")),res.getString("addr"),
-                        res.getString("phonenumber"),res.getString("jobtitle"),res.getString("specialty"));
+                        res.getString("phonenumber"),res.getString("jobtitle"),"");
                 
                 employees.add(e);
             }
@@ -635,6 +637,128 @@ public class QueryRequest {
          return employees;
     }
     
+    public static ObservableList<DoctorAvailability> GetDoctorAvailabilities(){
+        ObservableList<DoctorAvailability> da= FXCollections.observableArrayList();
+         try{
+            Connection con=ConnectionProvider.getCon();
+            System.out.println("Connected to Microsft SQL SERVER:Getting all doctor availability..");
+            PreparedStatement myStmt= con.prepareStatement("select * from DoctorAvailability where status='yes'");
+            
+            
+            ResultSet res = myStmt.executeQuery();
+            while(res.next())
+            {
+                
+                DoctorAvailability a = new DoctorAvailability(res.getInt("practitionerID"), LocalDate.parse(res.getString("date")), LocalTime.parse(res.getString("timeslot")), res.getString("status"));
+                
+                da.add(a);
+            }
+        }
+         catch(SQLException ex) 
+        {
+            System.out.println("Error: Getting all doctor availability.");
+            ex.printStackTrace();
+        }
+         return da;
+    }
+    
+    public static String AddDoctorAvailability(DoctorAvailability da)
+    {
+        String verify="";
+        try{
+            Connection con=ConnectionProvider.getCon();
+            System.out.println("Connected to Microsft SQL SERVER:Adding Doctor Availability..");
+            
+            PreparedStatement myStmt = con.prepareStatement("Insert into DoctorAvailability"
+                    + " (practitionerID,date,timeslot,status)"
+                    + " Values(?,?,?,?)");
+            myStmt.setInt(1, da.getPractitionerID());
+            myStmt.setString(2, da.getDate().toString());
+            myStmt.setString(3,da.getTime().toString());
+            myStmt.setString(4, da.getStatus());
+
+        
+           
+            int count = myStmt.executeUpdate();
+            if(count>0)
+            {
+                verify="success";
+                System.out.println("Success:Added Doctor Availability..");
+                con.close();
+            }
+            else
+                verify="fail";
+            con.close();
+        }
+        catch(SQLException ex) 
+        {
+            System.out.println("Error: Adding Doctor Availability..");
+            ex.printStackTrace();
+        }
+        return verify;
+    }
+    
+     public static String AddInPatientAdmission(InPatientAdmission ia)
+    {
+        String verify="";
+        try{
+            Connection con=ConnectionProvider.getCon();
+            System.out.println("Connected to Microsft SQL SERVER:Adding Inpatient Admission..");
+            
+            PreparedStatement myStmt = con.prepareStatement("Insert into Inpatients"
+                    + " (patientID, bedID,inDate,outDate,nurseID)"
+                    + " Values(?,?,?,?,?)");
+            myStmt.setInt(1, ia.getpatientID());
+            myStmt.setString(2, ia.getinDate().toString());
+            myStmt.setString(3,ia.getoutDate().toString());
+            myStmt.setInt(4, ia.getNurseID());
+
+        
+           
+            int count = myStmt.executeUpdate();
+            if(count>0)
+            {
+                verify="success";
+                System.out.println("Success:Added Inpatient Admission..");
+                con.close();
+            }
+            else
+                verify="fail";
+            con.close();
+        }
+        catch(SQLException ex) 
+        {
+            System.out.println("Error: Inpatient Admission..");
+            ex.printStackTrace();
+        }
+        return verify;
+    }
+    
+    public static ObservableList<InPatientAdmission> GetAllAdmissions(){
+        ObservableList<InPatientAdmission> da= FXCollections.observableArrayList();
+         try{
+            Connection con=ConnectionProvider.getCon();
+            System.out.println("Connected to Microsft SQL SERVER:Getting all users..");
+            PreparedStatement myStmt= con.prepareStatement("select * from Inpatients");
+            
+            
+            ResultSet res = myStmt.executeQuery();
+            while(res.next())
+            {
+                InPatientAdmission ia= new InPatientAdmission(res.getInt("patientID"),res.getString("bedID") ,LocalDate.parse(res.getString("inDate")),LocalDate.parse(res.getString("outDate")), res.getInt("nurseID"));
+                
+                da.add(ia);
+            }
+        }
+         catch(SQLException ex) 
+        {
+            System.out.println("Error: Getting all users..");
+            ex.printStackTrace();
+        }
+         return da;
+    }
+    
+    
     public static String RequestAppointment(Appointment a){
         String verify="";
         try{
@@ -642,7 +766,7 @@ public class QueryRequest {
             System.out.println("Connected to Microsft SQL SERVER:Adding Appointment..");
             
             PreparedStatement myStmt = con.prepareStatement("Insert into Appointments"
-                    + "(patientID,practitionerID,roomID,appDate,appTime,status)"
+                    + " (patientID,practitionerID,roomID,appDate,appTime,status)"
                     + " Values(?,?,?,?,?,?)");
             myStmt.setInt(1, a.getPatientID());
             myStmt.setInt(2, a.getPractitionerID());
@@ -671,28 +795,28 @@ public class QueryRequest {
         return verify;
     }
     
-    public static String ApproveAppointment(Appointment a){
+    public static String ModifyAppointment(Appointment a){
         String verify="";
         try{
             Connection con=ConnectionProvider.getCon();
-            System.out.println("Connected to Microsft SQL SERVER:Adding Appointment..");
+            System.out.println("Connected to Microsft SQL SERVER:Modifying Appointment..");
             
-            PreparedStatement myStmt = con.prepareStatement("Insert into Appointments"
-                    + "(patientID,practitionerID,roomID,appDate,appTime,status)"
-                    + " Values(?,?,?,?,?,?)");
+            PreparedStatement myStmt = con.prepareStatement("Update Appointments Set patientID =?, practitionerID =? "
+                    + " roomID=?, appDate=?, appTime=?, status=? where appdID=?");
             myStmt.setInt(1, a.getPatientID());
             myStmt.setInt(2, a.getPractitionerID());
             myStmt.setString(3,a.getRoomID());
             myStmt.setString(4, a.getappDate().toString());
             myStmt.setString(5, a.getappTime().toString());
             myStmt.setString(6,a.getStatus());
+            myStmt.setInt(7,a.getAppID());
         
            
             int count = myStmt.executeUpdate();
             if(count>0)
             {
                 verify="success";
-                System.out.println("Success:Added Appointment..");
+                System.out.println("Success:Modified Appointment..");
                 con.close();
             }
             else
@@ -701,7 +825,7 @@ public class QueryRequest {
         }
         catch(SQLException ex) 
         {
-            System.out.println("Error: Approving Appointment");
+            System.out.println("Error: Modifying Appointment");
             ex.printStackTrace();
         }
         return verify;

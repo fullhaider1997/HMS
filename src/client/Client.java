@@ -56,7 +56,6 @@ public class Client extends AbstractClient  {
       
       Fpacket fp = (Fpacket)msg;
       
- 
       
      // clientUI.display("Message from server Message from server !" + fp.getArg1());
       
