@@ -6,6 +6,7 @@
 package client;
 
 import common.ChatIF;
+import utilities.*;
 import java.io.IOException;
 import ocsf.client.AbstractClient;
 
@@ -22,6 +23,9 @@ public class Client extends AbstractClient  {
    * the display method in the client.
    */
   ChatIF clientUI;
+  String clientSession;
+  Object msgReceived;
+  String replyReceived;
  
   //Constructors ****************************************************
   
@@ -47,8 +51,70 @@ public class Client extends AbstractClient  {
    */
   public void handleMessageFromServer(Object msg) 
   {
-    clientUI.display(msg.toString());
-   
+    //clientUI.display(msg.toString());
+      
+      Fpacket fp = (Fpacket)msg;
+      
+ 
+      
+     // clientUI.display("Message from server Message from server !" + fp.getArg1());
+      
+      if(fp.getTpeOfRequest().equals("login"))
+      {
+          if(fp.getArg1().equals("patient"))
+          {
+        	
+        	  clientSession = fp.getArg1().toString();
+        	  System.out.println("ClientSession is " + clientSession);
+            
+          }
+          else if(fp.getArg1().equals("admin")){
+              //show admin UI
+               //SessionType= "admin";
+        	 
+        	
+        	  clientSession = fp.getArg1().toString();
+        	  System.out.println("ClientSession is " + clientSession);
+        	 
+        	  
+          }
+          else if(fp.getArg1().equals("doctor")){
+              //show show doctor UI
+               //SessionType= "doctor";
+        	  clientSession = fp.getArg1().toString();
+        	  System.out.println("ClientSession is " + clientSession);
+         	 
+        	  
+          }else if(fp.getArg1().equals("invalidlogin")){
+        	
+        	  clientSession = "invalidlogin";
+        	  
+        	  }
+          
+          //do the same for nurse
+      }
+      else if(fp.getTpeOfRequest().equals("register"))
+      {
+          if(fp.getArg1().equals("success"))
+          {
+              //show something like "registration successful log in now"
+          }
+          else if(fp.getArg1().equals("invalidusername")){
+        	  
+              //show something like "username already used try a different one"
+        	  
+          }
+          else if(fp.getArg1().equals("invalidID")){
+        	  
+              //show something like "ID doesnt exist, contact Admin to get your ID"
+          }
+       
+      }
+      else if(fp.getTpeOfRequest().equals("allpatients")) {
+    	  replyReceived = fp.getTpeOfRequest();
+    	  System.out.println("Getting "+ replyReceived);
+    	  msgReceived = fp.getArg1();
+      }
         
     
   }
@@ -86,14 +152,25 @@ public class Client extends AbstractClient  {
     System.exit(0);
   }
 
-    public void setName(String clientName) {
+    public String getSessionType() {
        
         
-        
+        return clientSession;
        
+    }
+    
+    public Object getmsgRecieved() {
+    	
+    	return msgReceived;
+    }
+    
+    public String getReplyReceived() {
+    	
+    	return replyReceived;
     }
 
     
 }
+
 
 
