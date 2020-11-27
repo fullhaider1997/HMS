@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
@@ -28,30 +29,28 @@
          <center>
             <AnchorPane prefHeight="556.0" prefWidth="549.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="38.0" layoutY="470.0" mnemonicParsing="false" onAction="#confirmButton" prefHeight="38.0" prefWidth="95.0" text="Confirm" />
+                  <Button layoutX="86.0" layoutY="470.0" mnemonicParsing="false" onAction="#confirmButton" prefHeight="38.0" prefWidth="95.0" text="Confirm" />
                   <Button layoutX="326.0" layoutY="470.0" mnemonicParsing="false" onAction="#ExitButton" prefHeight="38.0" prefWidth="90.0" text="Exit" />
                   <VBox layoutX="251.0" layoutY="127.0" prefHeight="220.0" prefWidth="265.0" spacing="20.0">
                      <children>
                         <Label text="Job Title" />
-                        <TextField />
-                        <Label text="Age" />
-                        <TextField />
+                        <TextField fx:id="jobTitleField" />
+                        <Label text="Date of Birth" />
+                        <DatePicker fx:id="dobField" prefHeight="25.0" prefWidth="277.0" />
                         <Label text="Address" />
-                        <TextField />
-                        <Label text="Job title" />
-                        <TextField />
+                        <TextField fx:id="addressField" />
                      </children>
                   </VBox>
                   <VBox layoutX="23.0" layoutY="127.0" prefHeight="200.0" prefWidth="209.0" spacing="20.0">
                      <children>
                         <Label text="First Name" />
-                        <TextField />
+                        <TextField fx:id="firstNameField" />
                         <Label text="Last Name" />
-                        <TextField />
-                        <Label text="Phone Numer" />
-                        <TextField />
-                        <Label prefHeight="17.0" prefWidth="82.0" text="Department" />
-                        <TextField />
+                        <TextField fx:id="lastNameField" />
+                        <Label text="Phone Number" />
+                        <TextField fx:id="phoneNumberField" />
+                        <Label text="Specialty" />
+                        <TextField fx:id="specialtyField" promptText="LEAVE EMPTY IF N/A" />
                      </children>
                   </VBox>
                   <Label layoutX="133.0" layoutY="36.0" prefHeight="73.0" prefWidth="238.0" text="Employment Form" textFill="#71dbeb">
@@ -59,6 +58,7 @@
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
+                  <Label layoutX="37.0" layoutY="444.0" prefHeight="17.0" prefWidth="464.0" text="An employee ID would be automatically assigned to this employee upon confirmation." />
                </children>
             </AnchorPane>
          </center>
