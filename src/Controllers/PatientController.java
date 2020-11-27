@@ -71,7 +71,7 @@ public class PatientController implements Initializable,ChatIF  {
 	 public void AppointmentPatientTab(ActionEvent event) throws IOException{
 	      
             
-		 patientClient.sendToServer("From Appointment : AppointmentPatientTab");
+		// patientClient.sendToServer("From Appointment : AppointmentPatientTab");
 		 
 	     utility.EmbeddFXMLIntoFXML(event, "/Usergui/patient/FXMLAppointmentsPatient.fxml", "/Usergui/patient/FXMLPatient.fxml");
 	        
@@ -82,7 +82,7 @@ public class PatientController implements Initializable,ChatIF  {
 	 public void FeedbackTab(ActionEvent event) throws IOException{
 	      
 	        
-		    patientClient.sendToServer("From patient : FeedbackTab");
+		    //patientClient.sendToServer("From patient : FeedbackTab");
 	     
 	        utility.EmbeddFXMLIntoFXML(event, "/Usergui/patient/FXMLFeedback.fxml", "/Usergui/patient/FXMLPatient.fxml");
 	        
@@ -92,7 +92,7 @@ public class PatientController implements Initializable,ChatIF  {
 	
 	 public void MedicalHistoryTab(ActionEvent event) throws IOException{
 	      
-		    patientClient.sendToServer("From patient : MedicalHistoryTab");
+		   // patientClient.sendToServer("From patient : MedicalHistoryTab");
 	     
 	     
 	        utility.EmbeddFXMLIntoFXML(event, "/Usergui/patient/FXMLMedicalHistory.fxml", "/Usergui/patient/FXMLPatient.fxml");
@@ -120,13 +120,7 @@ public class PatientController implements Initializable,ChatIF  {
     	
     	
     	 
-        try {
-        	 patientClient = new Client(host, DEFAULT_PORT, this);
-     
-        	 patientClient.openConnection();
-        } catch (IOException ex) {
-             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-       }
+      
         
     	
     	

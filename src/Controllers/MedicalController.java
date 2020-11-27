@@ -51,8 +51,7 @@ public class MedicalController implements Initializable, ChatIF {
     }
     public void setClient(Client client) throws IOException {
 
-        MedicalController.doctorClient = client;
-        
+    	this.doctorClient = client;
      
    
     }
@@ -80,7 +79,7 @@ public class MedicalController implements Initializable, ChatIF {
     
 	  public void ViewPatientsMedicalHistorytTab(ActionEvent event) throws IOException{
 	      
-	        doctorClient.sendToServer("From doctor : ViewPatientsMedicalHistorytTab");
+	     //   doctorClient.sendToServer("From doctor : ViewPatientsMedicalHistorytTab");
 	     
 	   
 	        utility.EmbeddFXMLIntoFXML(event, "/Usergui/doctor/FXMLViewPatients.fxml", "/Usergui/doctor/FXMLMedical.fxml");
@@ -90,8 +89,8 @@ public class MedicalController implements Initializable, ChatIF {
 	  
 	  public void ViewAppointmenttTab(ActionEvent event) throws IOException{
 	      
-		   doctorClient.sendToServer("From doctor : ViewAppointmenttTab");
-		  
+		  // doctorClient.sendToServer("From doctor : ViewAppointmenttTab");
+		  //
 	    
 	        utility.EmbeddFXMLIntoFXML(event, "/Usergui/doctor/FXMLViewAppointment.fxml", "/Usergui/doctor/FXMLMedical.fxml");
 	        
@@ -100,7 +99,7 @@ public class MedicalController implements Initializable, ChatIF {
 	  
 	  public void DoctorGuidetTab(ActionEvent event) throws IOException{
 	      
-		   doctorClient.sendToServer("From doctor : DoctorGuidetTab");      
+		  // doctorClient.sendToServer("From doctor : DoctorGuidetTab");      
 		
 	   
 	        utility.EmbeddFXMLIntoFXML(event, "/Usergui/doctor/FXMLDoctorGuide.fxml", "/Usergui/doctor/FXMLMedical.fxml");

@@ -133,8 +133,9 @@ public class LoginSystemController implements Initializable,ChatIF {
              System.out.println("user name is null");
         }
         
+           // Create the client
                client = new Client(host, DEFAULT_PORT, this);
-             // Create the client
+           
              //Open connection    
                client.openConnection();
             
@@ -183,8 +184,8 @@ public class LoginSystemController implements Initializable,ChatIF {
          StackPane parentScene = fxmlLoader.load();
          
          AdminController admincontroller = fxmlLoader.getController();
-         admincontroller.setUserName("Username: " +username);
-          admincontroller.setClient(client);
+         admincontroller.setClient(client);
+         admincontroller.setUserName("Username:" + username);
           
         Scene NextScene = new Scene(parentScene);
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
