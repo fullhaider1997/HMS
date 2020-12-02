@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminController">
+   <children>
+      <BorderPane fx:id="BorderPane" prefHeight="200.0" prefWidth="200.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="271.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icons/logo.PNG" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="StatusField" contentDisplay="CENTER" prefHeight="17.0" prefWidth="387.0" text="Username: unknown" />
+                  <Button mnemonicParsing="false" onAction="#PatientTab" prefHeight="234.0" prefWidth="332.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="       Patients">
+                     <graphic>
+                        <ImageView fitHeight="58.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/medicalhistory.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#EmployeeTab" prefHeight="186.0" prefWidth="327.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Employee">
+                     <graphic>
+                        <ImageView fitHeight="54.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/addEmployee.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#ExportDataTab" prefHeight="219.0" prefWidth="483.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Export data">
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/data.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#HosptialArragmentTab" prefHeight="220.0" prefWidth="370.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Arranging Hosptial">
+                     <graphic>
+                        <ImageView fitHeight="48.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/hosptial.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#AdminGuideTab" prefHeight="194.0" prefWidth="393.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Admin Guide">
+                     <graphic>
+                        <ImageView fitHeight="52.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/guide.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#ManageAppointmentsTab" prefHeight="216.0" prefWidth="514.0" style="-fx-border-color: #000000; -fx-background-color: #87CEFA;" text="Manage Appointments">
+                     <graphic>
+                        <ImageView fitHeight="57.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/appointment.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <AnchorPane prefHeight="515.0" prefWidth="629.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</StackPane>

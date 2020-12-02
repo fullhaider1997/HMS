@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="529.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.HosptialArrangmentController">
+   <children>
+      <VBox layoutX="478.0" layoutY="77.0" prefHeight="200.0" prefWidth="100.0" spacing="15.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="100.0" text="Add Room" />
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="123.0" text="Delete Room" />
+            <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="105.0" text="Edit Room" />
+         </children>
+      </VBox>
+      <TableView fx:id="tabelViewRooms" layoutX="9.0" layoutY="77.0" prefHeight="442.0" prefWidth="427.0" />
+      <TextField fx:id="filterFieldRooms" layoutX="120.0" layoutY="38.0" prefHeight="25.0" prefWidth="182.0" />
+      <Label layoutX="31.0" layoutY="42.0" text="Search box" />
+   </children>
+</AnchorPane>

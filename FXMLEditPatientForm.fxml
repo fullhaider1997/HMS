@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.admin.EditPatientController">
+    
+    <children>
+      <BorderPane layoutX="3.0" layoutY="1.0" prefHeight="556.0" prefWidth="629.0">
+         <left>
+            <Pane prefHeight="548.0" prefWidth="91.0" style="-fx-background-color: #87CEFA;" BorderPane.alignment="CENTER" />
+         </left>
+         <center>
+            <AnchorPane prefHeight="556.0" prefWidth="549.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="86.0" layoutY="470.0" mnemonicParsing="false" onAction="#confirmButton" prefHeight="38.0" prefWidth="95.0" text="Confirm" />
+                  <Button layoutX="326.0" layoutY="470.0" mnemonicParsing="false" onAction="#ExitButton" prefHeight="38.0" prefWidth="90.0" text="Exit" />
+                  <VBox layoutX="251.0" layoutY="127.0" prefHeight="220.0" prefWidth="265.0" spacing="20.0">
+                     <children>
+                        <Label text="Outstanding Condition" />
+                        <TextField fx:id="conditionField" />
+                        <Label text="Date of Birth" />
+                        <DatePicker fx:id="dobField" prefHeight="25.0" prefWidth="277.0" promptText="Enter new DOB" style="-fx-background-color: #d85b5b;" />
+                        <Label text="Address" />
+                        <TextField fx:id="addressField" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="23.0" layoutY="127.0" prefHeight="200.0" prefWidth="209.0" spacing="20.0">
+                     <children>
+                        <Label text="First Name" />
+                        <TextField fx:id="firstNameField" />
+                        <Label text="Last Name" />
+                        <TextField fx:id="lastNameField" />
+                        <Label text="Phone Number" />
+                        <TextField fx:id="phoneNumberField" />
+                     </children>
+                  </VBox>
+                  <Label alignment="CENTER" layoutX="133.0" layoutY="36.0" prefHeight="73.0" prefWidth="238.0" text="EDIT PATIENT" textFill="#71dbeb">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" layoutX="37.0" layoutY="444.0" prefHeight="17.0" prefWidth="464.0" text="NOTE: changes after confirmation cannot be reversed" />
+               </children>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
